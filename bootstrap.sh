@@ -18,12 +18,12 @@ sudo apt-get install -y git ansible
 eval "$(ssh-agent -s)"
 ssh-add $HOME/.ssh/id_ed25519
 
-#mkdir $HOME/github
-#cd $HOME/github
+mkdir $HOME/github
+cd $HOME/github
 
-#git clone git@github.com:ldraney/ansible_desktop_setup.git
-#git clone git@github.com:ldraney/dotfiles.git
-#git clone git@github.com:ldraney/sensitive.git
+git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
+git clone git@github.com:ldraney/dotfilesWSL.git
+git clone git@github.com:ldraney/sensitive.git
 
 #use this for developing my ansible script
 #ansible-pull -U ssh://git@github.com/ldraney/ansible_desktop_setup.git --key-file $HOME/.ssh/id_ed25519 --accept-host-key --ask-become-pass

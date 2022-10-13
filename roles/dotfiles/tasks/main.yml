@@ -19,10 +19,10 @@
   ignore_errors: yes
   become_user: ldraney
   ansible.builtin.git:
-    repo: 'ssh://git@github.com/ldraney/dotfiles.git'
+    repo: 'ssh://git@github.com/ldraney/dotfilesWSL.git'
     clone: yes
     update: yes
-    dest: /home/ldraney/github/dotfiles
+    dest: /home/ldraney/github/dotfilesWSL
     key_file: /home/ldraney/.ssh/id_ed25519
     accept_hostkey: yes
 
@@ -50,7 +50,7 @@
     owner: ldraney
     group: ldraney
     follow: false
-    src: '/home/ldraney/github/dotfiles/{{ item.src }}'
+    src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
     state: link
     force: true
@@ -105,7 +105,7 @@
 - name: neovim root link
   ignore_errors: yes
   ansible.builtin.file:
-    src: '/home/ldraney/github/dotfiles/{{ item.src }}'
+    src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
     dest: '/{{ item.dest }}'
     state: link
   loop:

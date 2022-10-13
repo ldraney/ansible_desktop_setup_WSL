@@ -6,10 +6,10 @@
   roles:
     - base
     - dotfiles
-    - zshConfigs
-    - recon
+    - sshConfigs
+    #- recon
 #     - displayCustomizations
-    - reconVpn
+    #- reconVpn
     #- tvp
     #- docker
 

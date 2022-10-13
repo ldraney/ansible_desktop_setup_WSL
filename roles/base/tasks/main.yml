@@ -30,8 +30,8 @@
 - name: clone ansible_desktop_setup_linux_subsystem
   become_user: ldraney
   ansible.builtin.git:
-    repo: 'git@github.com:PillarTechnologies/ansible_desktop_setup_linux_subsystem.git'
+    repo: 'git@github.com:ldraney/ansible_desktop_setup_WSL.git'
     clone: yes
-    dest: /home/ldraney/github/ansible_desktop_setup_linux_subsystem
+    dest: /home/ldraney/github/ansible_desktop_setup_WSL
     key_file: /home/ldraney/.ssh/id_ed25519
     accept_hostkey: yes
