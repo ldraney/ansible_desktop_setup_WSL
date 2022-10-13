@@ -1,0 +1,23 @@
+- name: make symlinks for Recon tv repos
+  ignore_errors: true
+  become_user: ldraney
+  file:
+    src: /mnt/hgfs/VMShare/Recon
+    dest: /home/ldraney/recon
+    state: link
+    force: true
+
+#- name: mkdir for recon 
+  #become_user: ldraney
+  #file:
+    #path: /home/ldraney/recon/tv/
+    ##type: dir
+    #state: directory
+
+- name: Ubuntu 2204 needs this to have same key type as old Recon Git server, necessary for id_rsa
+  lineinfile:
+    insertafter: EOF
+    state: present
+    line: '    PubkeyAcceptedKeyTypes +ssh-rsa'
+    path: /etc/ssh/ssh_config
+

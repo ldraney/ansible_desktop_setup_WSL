@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - base
+    - dotfiles
+    - zshConfigs
+    - recon
+#     - displayCustomizations
+    - reconVpn
+    #- tvp
+    #- docker
+

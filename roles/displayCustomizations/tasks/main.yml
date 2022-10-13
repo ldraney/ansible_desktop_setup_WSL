@@ -1,0 +1,69 @@
+
+- name: copy wallpaper file
+  copy: 
+    src: look/backgroundFiles/wallpaper.jpg
+    dest: /usr/share/backgrounds/ansible-wallpaper.jpg
+    owner: root
+    group: root
+  
+- name: set wallpaper
+  become_user: ldraney
+  dconf: 
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/ansible-wallpaper.jpg'"
+
+- name: set wallpaper position
+  become_user: ldraney
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
+
+- name: change login background image
+  ignore_errors: yes
+  ansible.builtin.copy:
+    src: '/home/ldraney/github/ansible_desktop_setup/look/backgroundFiles/login.jpg'
+    dest: '/usr/share/backgrounds/pia21972.png'
+    mode: '0644'
+
+#- name: add symlink to regolith theme
+  #ignore_errors: yes
+  #file:
+    #state: link
+    #owner: root
+    #group: root
+    #follow: false
+    ##owner: ldraney
+    ##group: ldraney
+    #src: '/home/ldraney/github/ansible_desktop_setup/look/gruvboxCustom'
+    #dest: '/usr/share/regolith-look/gruvboxCustom'
+#- name: add symlink to regolith theme
+  #copy:
+    #src: '/home/ldraney/github/ansible_desktop_setup/look'
+    #dest: '/usr/share/regolith-look/gruvboxCustom'-
+- name: copy gruvboxCustom to /usr/share/regolith-look/
+  copy:
+    src: '/home/ldraney/github/ansible_desktop_setup/look/gruvboxCustom'
+    dest: '/usr/share/regolith-look/'
+
+- name: regolith-look commands
+  become_user: ldraney
+  ignore_errors: yes
+  shell:
+    #cmd: regolith-look set gruvboxCustom
+    cmd: '{{ item }}'
+    #cmd: regolith-look set gruvboxCustom
+  loop:
+    - regolith-look set gruvboxCustom
+
+- name: configure dconf for gray comments and transparent background
+  become_user: ldraney
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:5a51ec6d-9841-432b-b134-ad902343b49c/{{ item.profile }}"
+    value: '{{ item.value }}'
+    #state: present
+  loop:
+    - { profile: 'use-transparent-background', value: 'true' }
+    - { profile: 'background-transparency-percent', value: '10' }
+    - { profile: 'use-theme-colors', value: 'true' }
+    - { profile: 'palette', value: "['rgb(79, 89, 27)', 'rgb(204,36,29)', 'rgb(152,151,26)', 'rgb(215,153,33)', 'rgb(69,133,136)', 'rgb(211,134,155)', 'rgb(104,157,106)', 'rgb(189,174,147)', 'rgb(168,153,132)', 'rgb(204,36,29)', 'rgb(152,151,26)', 'rgb(215,153,33)', 'rgb(69,133,136)', 'rgb(177,98,134)', 'rgb(104,157,106)', 'rgb(104,157,106)']"}
+    #- { profile: 'palette', value: "['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"}
