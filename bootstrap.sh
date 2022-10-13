@@ -7,8 +7,8 @@ set -e    #I need to restart computer after this command for vm shared folder to
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
 
-chmod 400 $HOME/.ssh/*
-chown -R ldraney:ldraney $HOME/.ssh
+sudo chmod 400 $HOME/.ssh/*
+sudo chown -R ldraney:ldraney $HOME/.ssh
 
 #rest of the install
 sudo apt-get update
