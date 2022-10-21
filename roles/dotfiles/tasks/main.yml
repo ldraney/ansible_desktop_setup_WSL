@@ -63,6 +63,7 @@
     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
+    - { src: 'zsh/zprofile', dest: '.zprofile' }
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'ansible.cfg', dest: '.ansible.cfg' }
 
