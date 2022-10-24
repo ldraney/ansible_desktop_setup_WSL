@@ -17,4 +17,6 @@
     pkg: 
       - tmux
       - zsh
+      - git
+      #- neovim 
       #- xclip

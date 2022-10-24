@@ -3,16 +3,17 @@
 - hosts: localhost
   connection: local
   become: true
-  #roles:
-    #- base
-    #- dotfiles
+  roles:
+    - role: base
+      tags: base
+    - role: dotfiles
+      tags: dotfiles
     #- sshConfigs
     #- sensitive
     #- recon
 #     - displayCustomizations
     #- reconVpn
     #- tvp
-    #- docker
-  roles:
-      - {role: 'base', tags: 'base'}
-      #- {role: 'apache', tags: 'apache'}
+  #roles:
+      #- {role: 'base', tags: 'base'}
+      #- {role: 'dotfiles', tags: 'dotfiles'}

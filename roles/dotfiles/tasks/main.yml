@@ -8,6 +8,7 @@
   with_items:
     - .local/share/nvim/site/autoload
     - .config
+    - .config/nixpkgs
 
 - name: dotfile symbolic links to user config
   ansible.builtin.file:
@@ -17,7 +18,7 @@
     dest: '/home/ldraney/{{ item.dest }}'
     state: link
     force: true
-    #follow: false
+    follow: false
   loop:
     - { src: 'nvim/', dest: '.config/nvim' }
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
@@ -28,7 +29,8 @@
     - { src: 'environment/warprc', dest: '.warprc' }
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
-    - { src: 'nix/default.nix', dest: 'default.nix' }
+    - { src: 'nix/shell.nix', dest: 'shell.nix' }
+    - { src: 'nix/home.nix', dest: '.config/nixpkgs/home.nix' }
     #- { src: 'ansible.cfg', dest: '.ansible.cfg' }
 
 - name: sensitive files symlinks
