@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
+#set -e
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
 sudo chmod 400 $HOME/.ssh/*
