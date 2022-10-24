@@ -12,7 +12,7 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 
 #rest of the install
 sudo apt-get update
-sudo apt-get upgrade -y
+#sudo apt-get upgrade -y
 sudo apt-get install -y git ansible
 
 eval "$(ssh-agent -s)"

@@ -1,8 +1,3 @@
-- name: make sure git is installed
-  package: 
-    name: 
-      - git
-      
 - name: make directory for dotfiles
   become_user: ldraney
   ignore_errors: yes
@@ -14,63 +9,27 @@
     - .local/share/nvim/site/autoload
     - .config
 
-  #clone dotfiles repo and symlink my files
-- name: clone dotfiles
-  ignore_errors: yes
-  become_user: ldraney
-  ansible.builtin.git:
-    repo: 'ssh://git@github.com/ldraney/dotfilesWSL.git'
-    clone: yes
-    update: yes
-    dest: /home/ldraney/github/dotfilesWSL
-    key_file: /home/ldraney/.ssh/id_ed25519
-    accept_hostkey: yes
-
-- name: clone ssh_keys
-  ignore_errors: yes
-  become_user: ldraney
-  ansible.builtin.git:
-    repo: 'ssh://git@github.com/ldraney/sensitive.git'
-    update: yes
-    clone: yes
-    dest: /home/ldraney/github/sensitive
-    key_file: /home/ldraney/.ssh/id_ed25519
-    accept_hostkey: yes
-
-      #- name: remove files to make room for new symlinks
-      #  file: 
-      #    path: '{{ item }}'
-      #    state: absent
-      #  with_items:
-      #    - /home/ldraney/.oh-my-zsh
-      #    - /home/ldraney/.ssh
-
 - name: dotfile symbolic links to user config
   ansible.builtin.file:
     owner: ldraney
     group: ldraney
-    follow: false
     src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
     dest: '/home/ldraney/{{ item.dest }}'
     state: link
     force: true
+    #follow: false
   loop:
     - { src: 'nvim/', dest: '.config/nvim' }
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
     - { src: 'zsh/zshrc', dest: '.zshrc' }
     - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
-    - { src: 'environment/warprc', dest: '.warprc' }
     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
-    - { src: 'git/gitconfig', dest: '.gitconfig' }
-    - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'zsh/zprofile', dest: '.zprofile' }
+    - { src: 'environment/warprc', dest: '.warprc' }
     - { src: 'customCommands', dest: '.customCommands' }
-    - { src: 'ansible.cfg', dest: '.ansible.cfg' }
-
-#- name: delete old .vim directory
-  #file:
-    #state: absent
-    #path: /home/ldraney/.vim
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+    - { src: 'nix/default.nix', dest: 'default.nix' }
+    #- { src: 'ansible.cfg', dest: '.ansible.cfg' }
 
 - name: sensitive files symlinks
   ignore_errors: yes
@@ -85,23 +44,6 @@
     - { src: 'zsh/zshenv', dest: '.zshenv' }
     - { src: 'vim', dest: '.vim' }
     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
-
-#- name: copy ssh keys
-  #ignore_errors: yes
-  #copy:
-    #src: /home/ldraney/github/sensitive/ssh
-    #dest: /home/ldraney/.ssh
-    #owner: ldraney
-    #group: ldraney
-    #mode: 400
-      #- name: Evaluating the authentication agent & adding the keys...
-      #  become_user: ldraney
-      #  shell:
-      #    cmd: {{ item }}
-      #  with_items: 
-      #    - eval "$(ssh-agent)"
-      #    - ssh-add ~/.ssh/id_rsa
-      #    - ssh-add ~/.ssh/id_ed25519
 
 - name: neovim root link
   ignore_errors: yes
@@ -135,3 +77,44 @@
   become_user: ldraney
   shell: 'vim --headless +PlugInstall +qall'
 
+#- name: clone ssh_keys
+  #ignore_errors: yes
+  #become_user: ldraney
+  #ansible.builtin.git:
+    #repo: 'ssh://git@github.com/ldraney/sensitive.git'
+    #update: yes
+    #clone: yes
+    #dest: /home/ldraney/github/sensitive
+    #key_file: /home/ldraney/.ssh/id_ed25519
+    #accept_hostkey: yes
+    #
+#- name: copy ssh keys
+  #ignore_errors: yes
+  #copy:
+    #src: /home/ldraney/github/sensitive/ssh
+    #dest: /home/ldraney/.ssh
+    #owner: ldraney
+    #group: ldraney
+    #mode: 400
+      #- name: Evaluating the authentication agent & adding the keys...
+      #  become_user: ldraney
+      #  shell:
+      #    cmd: {{ item }}
+      #  with_items: 
+      #    - eval "$(ssh-agent)"
+      #    - ssh-add ~/.ssh/id_rsa
+      #    - ssh-add ~/.ssh/id_ed25519
+
+#- name: remove files to make room for new symlinks
+#  file: 
+#    path: '{{ item }}'
+#    state: absent
+#  with_items:
+#    - /home/ldraney/.oh-my-zsh
+#    - /home/ldraney/.ssh
+#
+##- name: delete old .vim directory
+  #file:
+    #state: absent
+    #path: /home/ldraney/.vim
+    #

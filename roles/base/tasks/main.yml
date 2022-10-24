@@ -1,37 +1,20 @@
 ---
 
-##I think this one is working
-#- name: update
-  #ansible.builtin.apt:
-    #update_cache: yes
+#I think this one is working
+- name: update
+  ansible.builtin.apt:
+    update_cache: yes
 ##This definitely isn't working
 #- name: upgrade
   #ansible.builtin.apt:
     #only_upgrade: yes
 
 - name: install packages round 1
+  tags:
+    - base
   apt:
     update_cache: yes
     pkg: 
-      - htop
       - tmux
-      - python3-psutil #for dconf
-      - git
       - zsh
-      - curl
-      - mlocate
-      - xclip
-      - wget
-      - make
-      - feh
-      - tree
-      - wget
-
-- name: clone ansible_desktop_setup_linux_subsystem
-  become_user: ldraney
-  ansible.builtin.git:
-    repo: 'git@github.com:ldraney/ansible_desktop_setup_WSL.git'
-    clone: yes
-    dest: /home/ldraney/github/ansible_desktop_setup_WSL
-    key_file: /home/ldraney/.ssh/id_ed25519
-    accept_hostkey: yes
+      #- xclip
