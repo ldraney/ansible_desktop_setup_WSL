@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #set -e
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-. $HOME/.nix-profile/etc/profile.d/nix.sh
+
+#set up ssh keys (assumes wsl2)
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
 sudo chmod 400 $HOME/.ssh/*
@@ -10,11 +10,24 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
+#install and set up nix
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+. $HOME/.nix-profile/etc/profile.d/nix.sh
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
 nix-env -iA nixpkgs.zsh
 nix-env -iA nixpkgs.tmux
 nix-env -iA nixpkgs.wget
+nix-env -iA nixpkgs.terraform
+nix-env -iA nixpkgs.aws
+nix-env -iA nixpkgs.kubectl
+nix-env -iA nixpkgs.tree
+nix-env -iA nixpkgs.htop
+nix-env -iA nixpkgs.mlocate
+nix-env -iA nixpkgs.wget
+nix-env -iA nixpkgs.feh
+nix-env -iA nixpkgs.docker
+nix-env -iA nixpkgs.docker-compose
 
 mkdir $HOME/github
 cd $HOME/github
