@@ -43,6 +43,8 @@ ansible-playbook local.yml
 #teraform autocomplete install
 terraform -install-autocomplete
 
+#docker user no sudo 
+sudo usermod -aG docker ${USER}
 #docker autocomplete, maybe unecessary
 #mkdir -p ~/.zsh/completion
 #curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/completion/zsh/_docker-machine > $HOME/.zsh/completion/_docker-machine
