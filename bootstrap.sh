@@ -30,9 +30,6 @@ nix-env -iA nixpkgs.docker
 nix-env -iA nixpkgs.docker-compose
 nix-env -iA nixpkgs.google-cloud-sdk
 
-#teraform autocomplete install
-terraform -install-autocomplete
-
 mkdir $HOME/github
 cd $HOME/github
 
@@ -42,4 +39,12 @@ git clone git@github.com:ldraney/sensitive.git
 
 cd ansible*
 ansible-playbook local.yml
-#sudo reboot now
+
+#teraform autocomplete install
+terraform -install-autocomplete
+
+#docker autocomplete, maybe unecessary
+#mkdir -p ~/.zsh/completion
+#curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/completion/zsh/_docker-machine > $HOME/.zsh/completion/_docker-machine
+
+#sudo reboot now   # now do this with the wsl --terminate command instead
