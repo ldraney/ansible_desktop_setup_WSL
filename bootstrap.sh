@@ -19,7 +19,7 @@ nix-env -iA nixpkgs.zsh
 nix-env -iA nixpkgs.tmux
 nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.terraform
-nix-env -iA nixpkgs.aws
+nix-env -iA nixpkgs.awscli2
 nix-env -iA nixpkgs.kubectl
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.htop
@@ -28,6 +28,10 @@ nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.docker
 nix-env -iA nixpkgs.docker-compose
+nix-env -iA nixpkgs.google-cloud-sdk
+
+#teraform autocomplete install
+terraform -install-autocomplete
 
 mkdir $HOME/github
 cd $HOME/github
