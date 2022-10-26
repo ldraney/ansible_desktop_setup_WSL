@@ -42,7 +42,7 @@ cd ansible*
 ansible-playbook local.yml
 
 #teraform autocomplete install
-terraform -install-autocomplete
+#terraform -install-autocomplete
 
 #docker user no sudo 
 sudo usermod -aG docker ${USER}
