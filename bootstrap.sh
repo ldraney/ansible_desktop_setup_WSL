@@ -14,19 +14,13 @@ ssh-add $HOME/.ssh/id_ed*
 #fix root to use nix path
 echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
 
-#install and set up nix
-<<<<<<< Updated upstream
-/bin/bash ./scripts/nix_env_setup.sh > /tmp/outputNix.log 2>&1 &
-#install pyenv in the background
-/bin/bash ./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
-=======
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 . $HOME/.nix-profile/etc/profile.d/nix.sh
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
-#nix-env -iA nixpkgs.zsh
+nix-env -iA nixpkgs.zsh
 #nix-env -iA nixpkgs.tmux
-#nix-env -iA nixpkgs.neovim
+nix-env -iA nixpkgs.neovim
 #nix-env -iA nixpkgs.wget
 #nix-env -iA nixpkgs.terraform
 #nix-env -iA nixpkgs.awscli2
@@ -41,12 +35,11 @@ nix-env -iA nixpkgs.ansible
 #Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
 #nix-env -iA nixpkgs.docker
 #nix-env -iA nixpkgs.docker-compose
->>>>>>> Stashed changes
 
 mkdir $HOME/github
 cd $HOME/github
 nix-shell -p git --command 'git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git'
-nix-shell-p git --command 'git clone git@github.com:ldraney/dotfilesWSL.git'
+nix-shell -p git --command 'git clone git@github.com:ldraney/dotfilesWSL.git'
 nix-shell -p git --command 'git clone git@github.com:ldraney/sensitive.git'
 
 cd ansible*
