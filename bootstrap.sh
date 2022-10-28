@@ -14,9 +14,9 @@ ssh-add $HOME/.ssh/id_ed*
 echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
 
 #install and set up nix
-./scripts/nix_env_setup.sh > /tmp/outputNix.log 2>&1 &
+/bin/bash ./scripts/nix_env_setup.sh > /tmp/outputNix.log 2>&1 &
 #install pyenv in the background
-./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
+/bin/bash ./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
 
 #Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
 #nix-env -iA nixpkgs.docker
