@@ -18,20 +18,13 @@ echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/us
 #install pyenv in the background
 /bin/bash ./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
 
-#Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
-nix-env -iA nixpkgs.ansible
-nix-env -iA nixpkgs.git
-#nix-env -iA nixpkgs.docker
-#nix-env -iA nixpkgs.docker-compose
-
 mkdir $HOME/github
 cd $HOME/github
-git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
-git clone git@github.com:ldraney/dotfilesWSL.git
-git clone git@github.com:ldraney/sensitive.git
+nix-shell -p git --command 'git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git'
+nix-shell-p git --command 'git clone git@github.com:ldraney/dotfilesWSL.git'
+nix-shell -p git --command 'git clone git@github.com:ldraney/sensitive.git'
 
 cd ansible*
-#run ansible
 ansible-playbook local.yml
 
 #teraform autocomplete install
