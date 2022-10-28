@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
 #set up ssh keys (assumes wsl2)
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
