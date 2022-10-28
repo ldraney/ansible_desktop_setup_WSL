@@ -66,7 +66,7 @@
   copy:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
     dest: '/home/ldraney/.nix-profile/bin/{{ item.dst }}'
-    force: true
+    #force: true
   loop:
     - { src: 'nvim', dest: 'vim' }
     - { src: 'nvim-ruby', dest: 'vim-ruby' }
