@@ -45,8 +45,7 @@ git clone git@github.com:ldraney/sensitive.git
 
 cd ansible*
 #install pyenv in the background
-./scripts/pyenv_setup.sh &
-
+./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
 #run ansible
 ansible-playbook local.yml
 
