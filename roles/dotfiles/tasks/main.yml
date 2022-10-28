@@ -112,7 +112,7 @@
   become: yes
   user:
     name: "ldraney"
-    shell: /bin/zsh
+    shell: /home/ldraney/.nix-profile/bin/zsh
 
 ##- name: delete old .vim directory
   #file:
