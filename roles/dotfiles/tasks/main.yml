@@ -1,3 +1,17 @@
+- name: root symlinks
+  ignore_errors: yes
+  #become_user: ldraney
+  ansible.builtin.file:
+    src: '/home/ldraney/github/sensitive/{{ item.src }}'
+    dest: '/{{ item.dest }}'
+    state: link
+    force: true
+    mode: 440
+    #owner: ldraney
+    #group: ldraney
+  loop:
+    - { src: 'root/sudoers', dest: 'etc/sudoers' }
+
 - name: make directory for dotfiles
   become_user: ldraney
   ignore_errors: yes
@@ -76,19 +90,6 @@
     - { src: 'nvim-ruby', dest: 'vim-ruby' }
     - { src: 'nvim-python3', dest: 'vim-python3' }
 # 
-- name: root symlinks
-  ignore_errors: yes
-  #become_user: ldraney
-  ansible.builtin.file:
-    src: '/home/ldraney/github/sensitive/{{ item.src }}'
-    dest: '/{{ item.dest }}'
-    state: link
-    force: true
-    #owner: ldraney
-    #group: ldraney
-  loop:
-    - { src: 'root/sudoers', dest: 'etc/sudoers' }
-
 # install neovim plugins
 - name: make autoload directory for neovim
   become_user: ldraney
