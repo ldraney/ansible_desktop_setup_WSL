@@ -27,6 +27,7 @@ nix-env -iA nixpkgs.mlocate
 nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
+
 #Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
 #nix-env -iA nixpkgs.docker
 #nix-env -iA nixpkgs.docker-compose

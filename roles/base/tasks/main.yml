@@ -4,10 +4,6 @@
 - name: update
   ansible.builtin.apt:
     update_cache: yes
-##This definitely isn't working
-#- name: upgrade
-  #ansible.builtin.apt:
-    #only_upgrade: yes
 
 - name: install packages round 1
   tags:
@@ -17,6 +13,4 @@
     pkg: 
       - tmux
       - zsh
-      - git
-      #- neovim 
-      #- xclip
+      #- git

@@ -8,12 +8,6 @@
       tags: base
     - role: dotfiles
       tags: dotfiles
-    #- sshConfigs
-    #- sensitive
-    #- recon
-#     - displayCustomizations
-    #- reconVpn
-    #- tvp
   #roles:
       #- {role: 'base', tags: 'base'}
       #- {role: 'dotfiles', tags: 'dotfiles'}

@@ -47,6 +47,17 @@
     - { src: 'vim', dest: '.vim' }
     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
+- name: windows symlinks
+  ignore_errors: yes
+  become_user: ldraney
+  ansible.builtin.file:
+    src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
+    dest: '/mnt/c/Users/drane/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/{{ item.dest }}'
+    state: link
+    force: true
+  loop:
+    - { src: 'windows/settings.json', dest: 'settings.json' }
+
 - name: neovim root link
   ignore_errors: yes
   ansible.builtin.file:
