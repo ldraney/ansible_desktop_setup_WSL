@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd ansible*
+cd /home/ldraney/github/ansible/
 ansible-playbook local.yml
 
