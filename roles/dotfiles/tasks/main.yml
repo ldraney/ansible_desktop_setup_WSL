@@ -62,7 +62,7 @@
 #  So, I'm copying the symlinks under a new name instead
 - name: setting up alias to nix bin
   ignore_errors: yes
-  become_user: ldraney
+  #become_user: ldraney
   file:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
     dest: '/home/ldraney/.nix-profile/bin/{{ item.dest }}'
@@ -70,6 +70,7 @@
     state: link
     owner: ldraney
     group: ldraney
+    follow: False   #https://stackoverflow.com/questions/70608966/create-link-with-specific-owner-group
   loop:
     - { src: 'nvim', dest: 'vim' }
     - { src: 'nvim-ruby', dest: 'vim-ruby' }
