@@ -10,7 +10,6 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
-
 #fix root to use nix path
 echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
 
@@ -45,6 +44,10 @@ git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git
 
 cd ansible*
+#install pyenv in the background
+./scripts/pyenv_setup.sh &
+
+#run ansible
 ansible-playbook local.yml
 
 #teraform autocomplete install
