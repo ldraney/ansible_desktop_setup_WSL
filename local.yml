@@ -8,8 +8,6 @@
       #tags: base
     - role: dotfiles
       tags: dotfiles
-    #- role: pyenv
-      #tags: pyenv
   #roles:
       #- {role: 'base', tags: 'base'}
       #- {role: 'dotfiles', tags: 'dotfiles'}

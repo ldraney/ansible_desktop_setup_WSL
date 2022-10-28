@@ -1,16 +1,18 @@
 ---
 
-#I think this one is working
-- name: update
-  ansible.builtin.apt:
-    update_cache: yes
+#none of this is necessary anymore due to nix
 
-- name: install packages round 1
-  tags:
-    - base
-  apt:
-    update_cache: yes
-    pkg: 
-      - tmux
-      - zsh
-      #- git
+#I think this one is working
+#- name: update
+  #ansible.builtin.apt:
+    #update_cache: yes
+
+#- name: install packages round 1
+  #tags:
+    #- base
+  #apt:
+    #update_cache: yes
+    #pkg: 
+      #- tmux
+      #- zsh
+      ##- git
