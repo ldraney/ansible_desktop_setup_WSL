@@ -61,7 +61,7 @@
 #  this is because nix-env doesn't set up PATH to find zshrc
 #  So, I'm copying the symlinks under a new name instead
 - name: setting up alias to nix bin
-  ignore_errors: yes
+  #ignore_errors: yes
   #become_user: ldraney
   file:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
