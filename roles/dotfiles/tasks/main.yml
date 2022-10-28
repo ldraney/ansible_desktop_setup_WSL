@@ -63,11 +63,11 @@
 - name: setting up alias to nix bin
   ignore_errors: yes
   #become_user: ldraney
-  copy:
+  file:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
     dest: '/home/ldraney/.nix-profile/bin/{{ item.dest }}'
-    #force: true
-  state: link
+    force: true
+    state: link
   loop:
     - { src: 'nvim', dest: 'vim' }
     - { src: 'nvim-ruby', dest: 'vim-ruby' }
