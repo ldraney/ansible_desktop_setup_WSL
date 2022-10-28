@@ -58,21 +58,6 @@
   loop:
     - { src: 'windows/settings.json', dest: 'settings.json' }
 
-- name: neovim root link
-  ignore_errors: yes
-  ansible.builtin.file:
-    src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
-    dest: '/{{ item.dest }}'
-    state: link
-  loop:
-    - { src: 'nvim/nvim-linux64/bin/nvim', dest: 'usr/bin/vim' }
-
-- name: change user shell to zsh (needs restart to be effective)
-  become: yes
-  user:
-    name: "ldraney"
-    shell: /bin/zsh
-
 # install neovim plugins
 - name: make autoload directory for neovim
   become_user: ldraney
@@ -90,42 +75,13 @@
   become_user: ldraney
   shell: 'vim --headless +PlugInstall +qall'
 
-#- name: clone ssh_keys
-  #ignore_errors: yes
-  #become_user: ldraney
-  #ansible.builtin.git:
-    #repo: 'ssh://git@github.com/ldraney/sensitive.git'
-    #update: yes
-    #clone: yes
-    #dest: /home/ldraney/github/sensitive
-    #key_file: /home/ldraney/.ssh/id_ed25519
-    #accept_hostkey: yes
-    #
-#- name: copy ssh keys
-  #ignore_errors: yes
-  #copy:
-    #src: /home/ldraney/github/sensitive/ssh
-    #dest: /home/ldraney/.ssh
-    #owner: ldraney
-    #group: ldraney
-    #mode: 400
-      #- name: Evaluating the authentication agent & adding the keys...
-      #  become_user: ldraney
-      #  shell:
-      #    cmd: {{ item }}
-      #  with_items: 
-      #    - eval "$(ssh-agent)"
-      #    - ssh-add ~/.ssh/id_rsa
-      #    - ssh-add ~/.ssh/id_ed25519
+#zsh configs
+- name: change user shell to zsh (needs restart to be effective)
+  become: yes
+  user:
+    name: "ldraney"
+    shell: /bin/zsh
 
-#- name: remove files to make room for new symlinks
-#  file: 
-#    path: '{{ item }}'
-#    state: absent
-#  with_items:
-#    - /home/ldraney/.oh-my-zsh
-#    - /home/ldraney/.ssh
-#
 ##- name: delete old .vim directory
   #file:
     #state: absent

@@ -17,6 +17,7 @@ nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
 nix-env -iA nixpkgs.zsh
 nix-env -iA nixpkgs.tmux
+nix-env -iA nixpkgs.neovim
 nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.terraform
 nix-env -iA nixpkgs.awscli2

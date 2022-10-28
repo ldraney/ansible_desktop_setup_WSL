@@ -4,8 +4,8 @@
   connection: local
   become: true
   roles:
-    - role: base
-      tags: base
+    #- role: base
+      #tags: base
     - role: dotfiles
       tags: dotfiles
     #- role: pyenv
