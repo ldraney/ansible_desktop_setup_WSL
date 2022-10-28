@@ -62,7 +62,7 @@
 #  So, I'm copying the symlinks under a new name instead
 - name: setting up alias to nix bin
   ignore_errors: yes
-  #become_user: ldraney
+  become_user: ldraney
   file:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
     dest: '/home/ldraney/.nix-profile/bin/{{ item.dest }}'
