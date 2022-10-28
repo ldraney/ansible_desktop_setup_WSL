@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#set -e
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-. $HOME/.nix-profile/etc/profile.d/nix.sh
 #set up ssh keys (assumes wsl2)
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
@@ -11,44 +8,21 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
-#fix root to use nix path
-echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
-
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 . $HOME/.nix-profile/etc/profile.d/nix.sh
-nix-env -iA nixpkgs.git
-nix-env -iA nixpkgs.ansible
-nix-env -iA nixpkgs.zsh
-#nix-env -iA nixpkgs.tmux
-nix-env -iA nixpkgs.neovim
-#nix-env -iA nixpkgs.wget
-#nix-env -iA nixpkgs.terraform
-#nix-env -iA nixpkgs.awscli2
-#nix-env -iA nixpkgs.kubectl
-#nix-env -iA nixpkgs.tree
-#nix-env -iA nixpkgs.htop
-#nix-env -iA nixpkgs.mlocate
-#nix-env -iA nixpkgs.wget
-#nix-env -iA nixpkgs.feh
-#nix-env -iA nixpkgs.google-cloud-sdk
 
-#Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
-#nix-env -iA nixpkgs.docker
-#nix-env -iA nixpkgs.docker-compose
+nix-env -iA nixpkgs.parallel
 
 mkdir $HOME/github
 cd $HOME/github
-nix-shell -p git --command 'git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git'
-nix-shell -p git --command 'git clone git@github.com:ldraney/dotfilesWSL.git'
-nix-shell -p git --command 'git clone git@github.com:ldraney/sensitive.git'
+git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git &
+git clone git@github.com:ldraney/dotfilesWSL.git &
+git clone git@github.com:ldraney/sensitive.git &
 
 cd ansible*
-ansible-playbook local.yml
+parallel -j0 exec ::: ./scripts/first/*.sh
+parallel -j0 exec ::: ./scripts/second/*.sh
+parallel -j0 exec ::: ./scripts/third/*.sh
 
-#teraform autocomplete install
-#terraform -install-autocomplete
-
-#docker user no sudo 
-sudo usermod -aG docker ${USER}
-
-#sudo reboot now   # now do this with the wsl --terminate command instead
+#fix root to use nix path
+#echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-##install and set up nix
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-. $HOME/.nix-profile/etc/profile.d/nix.sh
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
 nix-env -iA nixpkgs.zsh
