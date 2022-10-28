@@ -65,7 +65,7 @@
   #become_user: ldraney
   copy:
     src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
-    dest: '/home/ldraney/.nix-profile/bin/{{ item.dst }}'
+    dest: '/home/ldraney/.nix-profile/bin/{{ item.dest }}'
     #force: true
   loop:
     - { src: 'nvim', dest: 'vim' }
