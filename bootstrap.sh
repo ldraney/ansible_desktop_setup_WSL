@@ -10,6 +10,10 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
+
+#fix root to use nix path
+echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
+
 #install and set up nix
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 . $HOME/.nix-profile/etc/profile.d/nix.sh
