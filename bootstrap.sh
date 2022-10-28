@@ -38,7 +38,6 @@ nix-env -iA nixpkgs.google-cloud-sdk
 
 mkdir $HOME/github
 cd $HOME/github
-
 git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git
