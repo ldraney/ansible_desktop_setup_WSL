@@ -19,6 +19,8 @@ echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/us
 /bin/bash ./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
 
 #Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
+nix-env -iA nixpkgs.ansible
+nix-env -iA nixpkgs.git
 #nix-env -iA nixpkgs.docker
 #nix-env -iA nixpkgs.docker-compose
 
