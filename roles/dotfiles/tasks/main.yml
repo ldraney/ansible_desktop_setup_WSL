@@ -70,7 +70,7 @@
   loop:
     - { src: 'nvim', dest: 'vim' }
     - { src: 'nvim-ruby', dest: 'vim-ruby' }
-    - { src: 'nvim-python', dest: 'vim-python' }
+    - { src: 'nvim-python3', dest: 'vim-python3' }
 # install neovim plugins
 - name: make autoload directory for neovim
   become_user: ldraney
