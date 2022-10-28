@@ -57,6 +57,20 @@
   loop:
     - { src: 'windows/settings.json', dest: 'settings.json' }
 
+#  setting up alias to nix bin
+#  this is because nix-env doesn't set up PATH to find zshrc
+#  So, I'm copying the symlinks under a new name instead
+- name: setting up alias to nix bin ()
+  ignore_errors: no
+  #become_user: ldraney
+  copy:
+    src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
+    dest: '/home/ldraney/.nix-profile/bin/{{ item.dst }}'
+    force: true
+  loop:
+    - { src: 'nvim', dest: 'vim' }
+    - { src: 'nvim-ruby', dest: 'vim-ruby' }
+    - { src: 'nvim-python', dest: 'vim-python' }
 # install neovim plugins
 - name: make autoload directory for neovim
   become_user: ldraney
