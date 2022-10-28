@@ -15,9 +15,33 @@ ssh-add $HOME/.ssh/id_ed*
 echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
 
 #install and set up nix
+<<<<<<< Updated upstream
 /bin/bash ./scripts/nix_env_setup.sh > /tmp/outputNix.log 2>&1 &
 #install pyenv in the background
 /bin/bash ./scripts/pyenv_setup.sh > /tmp/output.log 2>&1 &
+=======
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+nix-env -iA nixpkgs.git
+nix-env -iA nixpkgs.ansible
+#nix-env -iA nixpkgs.zsh
+#nix-env -iA nixpkgs.tmux
+#nix-env -iA nixpkgs.neovim
+#nix-env -iA nixpkgs.wget
+#nix-env -iA nixpkgs.terraform
+#nix-env -iA nixpkgs.awscli2
+#nix-env -iA nixpkgs.kubectl
+#nix-env -iA nixpkgs.tree
+#nix-env -iA nixpkgs.htop
+#nix-env -iA nixpkgs.mlocate
+#nix-env -iA nixpkgs.wget
+#nix-env -iA nixpkgs.feh
+#nix-env -iA nixpkgs.google-cloud-sdk
+
+#Docker is installed on WSL2 by docker desktop.  With autocomplete as well!
+#nix-env -iA nixpkgs.docker
+#nix-env -iA nixpkgs.docker-compose
+>>>>>>> Stashed changes
 
 mkdir $HOME/github
 cd $HOME/github
