@@ -36,12 +36,13 @@ nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
 
 cd ansible*
-. ./scripts/second/*
+ansible-playbook local.yml
 
+sudo usermod -aG docker ${USER}
 
 #parallel -j0 exec ::: ./scripts/first/*.sh
 #parallel -j0 exec ::: ./scripts/second/*.sh
 #parallel -j0 exec ::: ./scripts/third/*.sh
 
 #fix root to use nix path
-#echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
+echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
