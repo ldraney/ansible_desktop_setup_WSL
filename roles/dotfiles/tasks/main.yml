@@ -1,17 +1,3 @@
-#- name: root symlinks
-  #ignore_errors: yes
-  ##become_user: ldraney
-  #ansible.builtin.file:
-    #src: '/home/ldraney/github/sensitive/{{ item.src }}'
-    #dest: '/{{ item.dest }}'
-    #state: link
-    #force: true
-    #mode: 440
-    ##owner: ldraney
-    ##group: ldraney
-  #loop:
-    #- { src: 'root/sudoers', dest: 'etc/sudoers' }
-
 - name: make directory for dotfiles
   become_user: ldraney
   ignore_errors: yes
@@ -61,15 +47,15 @@
     - { src: 'vim', dest: '.vim' }
     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
-- name: copy settings.json for windows terminal
-  ignore_errors: no
-  #become_user: ldraney
-  copy:
-    src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
-    dest: '/mnt/c/Users/drane/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/{{ item.dest }}'
-    force: true
-  loop:
-    - { src: 'windows/settings.json', dest: 'settings.json' }
+#- name: copy settings.json for windows terminal
+  #ignore_errors: no
+  ##become_user: ldraney
+  #copy:
+    #src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
+    #dest: '/mnt/c/Users/drane/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/{{ item.dest }}'
+    #force: true
+  #loop:
+    #- { src: 'windows/settings.json', dest: 'settings.json' }
 
 #  setting up alias to nix bin
 #  this is because nix-env doesn't set up PATH to find zshrc
@@ -121,3 +107,18 @@
     #state: absent
     #path: /home/ldraney/.vim
     #
+
+#- name: root symlinks
+  #ignore_errors: yes
+  ##become_user: ldraney
+  #ansible.builtin.file:
+    #src: '/home/ldraney/github/sensitive/{{ item.src }}'
+    #dest: '/{{ item.dest }}'
+    #state: link
+    #force: true
+    #mode: 440
+    ##owner: ldraney
+    ##group: ldraney
+  #loop:
+    #- { src: 'root/sudoers', dest: 'etc/sudoers' }
+

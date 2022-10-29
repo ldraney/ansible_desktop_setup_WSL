@@ -4,10 +4,7 @@
   connection: local
   become: true
   roles:
-    #- role: base
-      #tags: base
     - role: dotfiles
       tags: dotfiles
   #roles:
-      #- {role: 'base', tags: 'base'}
       #- {role: 'dotfiles', tags: 'dotfiles'}
