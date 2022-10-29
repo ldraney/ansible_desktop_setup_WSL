@@ -14,14 +14,27 @@ mkdir -p $HOME/github
 cd $HOME/github
 
 nix-env -iA nixpkgs.git
-nix-env -iA nixpkgs.parallel
 
 git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 
+nix-env -iA nixpkgs.git
+nix-env -iA nixpkgs.ansible
+nix-env -iA nixpkgs.zsh
+nix-env -iA nixpkgs.tmux
+nix-env -iA nixpkgs.wget
+nix-env -iA nixpkgs.terraform
+nix-env -iA nixpkgs.awscli2
+nix-env -iA nixpkgs.kubectl
+nix-env -iA nixpkgs.tree
+nix-env -iA nixpkgs.htop
+nix-env -iA nixpkgs.mlocate
+nix-env -iA nixpkgs.wget
+nix-env -iA nixpkgs.feh
+nix-env -iA nixpkgs.google-cloud-sdk
+
 cd ansible*
-parallel nix-env -iA < scripts/first/nix_env_parallel
 . ./scripts/second/*
 
 

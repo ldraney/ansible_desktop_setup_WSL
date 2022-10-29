@@ -63,7 +63,7 @@
 
 - name: copy settings.json for windows terminal
   ignore_errors: no
-  become_user: ldraney
+  #become_user: ldraney
   copy:
     src: '/home/ldraney/github/dotfilesWSL/{{ item.src }}'
     dest: '/mnt/c/Users/drane/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/{{ item.dest }}'
