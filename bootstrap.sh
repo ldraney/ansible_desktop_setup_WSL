@@ -19,6 +19,10 @@ git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 
+cd ansible*
+#. ./scripts/pyenv_setup.sh
+/bin/bash ./scripts/pyenv_setup.sh > /tmp/outputPyEnv.log 2>&1 &
+
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
 nix-env -iA nixpkgs.zsh
@@ -35,7 +39,6 @@ nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
 
-cd ansible*
 ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
