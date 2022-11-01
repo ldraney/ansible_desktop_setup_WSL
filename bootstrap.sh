@@ -38,6 +38,7 @@ nix-env -iA nixpkgs.mlocate
 nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
+nix-env -iA nixpkgs.gh
 
 ansible-playbook local.yml
 
