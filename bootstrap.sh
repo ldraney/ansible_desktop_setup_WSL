@@ -40,6 +40,9 @@ nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
 nix-env -iA nixpkgs.gh
 
+#github extensions
+gh extension install geoffreywiseman/gh-actuse
+
 ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
