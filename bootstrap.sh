@@ -21,7 +21,7 @@ git clone git@github.com:ldraney/sensitive.git
 
 cd ansible*
 #. ./scripts/pyenv_setup.sh
-/bin/bash ./scripts/pyenv_setup.sh > /tmp/outputPyEnv.log 2>&1 &
+#/bin/bash ./scripts/pyenv_setup.sh > /tmp/outputPyEnv.log 2>&1 &
 
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.ansible
