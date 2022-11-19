@@ -31,7 +31,7 @@
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'nix/shell.nix', dest: 'shell.nix' }
     - { src: 'nix/home.nix', dest: '.config/nixpkgs/home.nix' }
-    #- { src: 'ansible.cfg', dest: '.ansible.cfg' }
+    - { src: 'cheatseets', dest: '.config/cheat/cheatsheets/personal2' }
 
 - name: sensitive files symlinks
   ignore_errors: yes
@@ -109,7 +109,7 @@
     #
 
 - name: root symlinks
-  ignore_errors: no
+  ignore_errors: yes
   #become_user: ldraney
   ansible.builtin.file:
     src: '{{ item.src }}'

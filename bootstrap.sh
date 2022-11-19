@@ -53,3 +53,10 @@ sudo usermod -aG docker ${USER}
 
 #fix root to use nix path
 echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
+
+#install cheatsheet
+cd /tmp \
+  && wget https://github.com/cheat/cheat/releases/download/4.4.0/cheat-linux-amd64.gz \
+  && gunzip cheat-linux-amd64.gz \
+  && chmod +x cheat-linux-amd64 \
+  && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
