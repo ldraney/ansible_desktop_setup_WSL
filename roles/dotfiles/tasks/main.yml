@@ -10,6 +10,11 @@
     - .config
     - .config/nixpkgs
 
+- name: remove paths that block symlinks
+  file:
+    state: absent
+    path: /home/ldraney/.config/cheat
+
 - name: dotfile symbolic links to user config
   ansible.builtin.file:
     owner: ldraney
@@ -31,7 +36,7 @@
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'nix/shell.nix', dest: 'shell.nix' }
     - { src: 'nix/home.nix', dest: '.config/nixpkgs/home.nix' }
-    - { src: 'cheatseets', dest: '.config/cheat/cheatsheets/personal2' }
+    - { src: 'cheat', dest: '.config/cheat' }
 
 - name: sensitive files symlinks
   ignore_errors: yes
