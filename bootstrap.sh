@@ -29,8 +29,6 @@ nix-env -iA nixpkgs.zsh
 nix-env -iA nixpkgs.tmux
 nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.neovim
-nix-env -iA nixpkgs.terraform
-nix-env -iA nixpkgs.awscli2
 nix-env -iA nixpkgs.kubectl
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.htop
@@ -39,6 +37,9 @@ nix-env -iA nixpkgs.wget
 nix-env -iA nixpkgs.feh
 nix-env -iA nixpkgs.google-cloud-sdk
 nix-env -iA nixpkgs.gh
+#these two need autocomplete, which I can't get to work with nix
+#nix-env -iA nixpkgs.terraform
+#nix-env -iA nixpkgs.awscli2
 
 #github extensions
 gh extension install geoffreywiseman/gh-actuse
