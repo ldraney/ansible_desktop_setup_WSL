@@ -1,7 +1,7 @@
 #!/bin/bash
 #set up ssh keys (assumes wsl2)
 mkdir -p $HOME/.ssh
-sudo cp -r /mnt/c/Users/drane/Desktop/VMShare/ssh/* $HOME/.ssh/
+sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
 sudo chmod 400 $HOME/.ssh/*
 sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
