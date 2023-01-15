@@ -28,7 +28,6 @@ nix-env -iA nixpkgs.ansible
 nix-env -iA nixpkgs.zsh
 nix-env -iA nixpkgs.tmux
 nix-env -iA nixpkgs.wget
-nix-env -iA nixpkgs.neovim
 nix-env -iA nixpkgs.kubectl
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.htop
@@ -40,6 +39,18 @@ nix-env -iA nixpkgs.gh
 #these two need autocomplete, which I can't get to work with nix
 #nix-env -iA nixpkgs.terraform
 #nix-env -iA nixpkgs.awscli2
+#install neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+sudo apt install -y neovim
+
+#install pyenv
+curl https://pyenv.run | bash
+sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+#export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
+pyenv install 3.11.0
 
 #github extensions
 gh extension install geoffreywiseman/gh-actuse
