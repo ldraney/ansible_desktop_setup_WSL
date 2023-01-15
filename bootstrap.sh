@@ -43,6 +43,8 @@ nix-env -iA nixpkgs.gh
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install -y neovim
+#sudo ln -s /usr/bin/nvim /home/user/bin/nvim
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
 #install pyenv
 curl https://pyenv.run | bash
