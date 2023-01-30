@@ -74,3 +74,20 @@ cd /tmp \
   && gunzip cheat-linux-amd64.gz \
   && chmod +x cheat-linux-amd64 \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
+
+# install lua
+mkdir /home/ldraney/lua_build
+cd /home/ldraney/lua_build
+curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz
+tar zxf lua-5.4.4.tar.gz
+cd lua-5.4.4
+make linux test
+sudo make install
+
+# install Lua Rocks
+sudo apt-get install unzip
+wget https://luarocks.org/releases/luarocks-3.9.1.tar.gz
+tar zxpf luarocks-3.9.1.tar.gz
+cd luarocks-3.9.1
+./configure && make && sudo make install
+sudo luarocks install luasocket
