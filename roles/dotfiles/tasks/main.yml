@@ -100,6 +100,13 @@
   args:
     executable: /home/ldraney/.nix-profile/bin/zsh
 
+#Neovim Copilot
+- name: install latest stable nodejs version
+  become_user: ldraney
+  shell: 'nvm install --lts'
+  args:
+    executable: /home/ldraney/.nix-profile/bin/zsh
+
 #zsh configs
 - name: change user shell to zsh (needs restart to be effective)
   become: yes
@@ -125,4 +132,5 @@
     ##owner: ldraney
     ##group: ldraney
   #loop:
-    #- { src: '/home/ldraney/.nix-profile/bin/aws_completer', dest: '/usr/local/bin/aws_completer' }
+    #- { src: '/home/l
+    #draney/.nix-profile/bin/aws_completer', dest: '/usr/local/bin/aws_completer' }

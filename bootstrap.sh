@@ -57,6 +57,15 @@ pyenv install 3.11.0
 #github extensions
 gh extension install geoffreywiseman/gh-actuse
 
+#Copilot setup
+#first install latest stable nodejs with nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+
+#set up copilot to neovim
+git clone https://github.com/github/copilot.vim \
+   ~/.config/nvim/pack/github/start/copilot.vim
+
+#run ansible (this is using nix, so I made need to change it later due to legacy issues)
 ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
@@ -91,3 +100,10 @@ tar zxpf luarocks-3.9.1.tar.gz
 cd luarocks-3.9.1
 ./configure && make && sudo make install
 sudo luarocks install luasocket
+
+#install terraform via tfenv
+git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+# path should already by in my .zshenv, so you can run
+tfenv install 1.1.3
+tfenv use 1.1.3
+
