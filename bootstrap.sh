@@ -107,3 +107,9 @@ git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
 tfenv install 1.1.3
 tfenv use 1.1.3
 
+#get my oddball repos
+mkdir ~/oddball
+cd ~/oddball
+git clone git@github.com:department-of-veterans-affairs/vanotify-team.git 
+git clone git@github.com:department-of-veterans-affairs/vanotify-infra.git
+git clone git@github.com:department-of-veterans-affairs/notification-api.git
