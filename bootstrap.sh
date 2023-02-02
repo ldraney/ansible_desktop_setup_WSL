@@ -59,11 +59,11 @@ gh extension install geoffreywiseman/gh-actuse
 
 #Copilot setup
 #first install latest stable nodejs with nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 
 #set up copilot to neovim
-git clone https://github.com/github/copilot.vim \
-   ~/.config/nvim/pack/github/start/copilot.vim
+#git clone https://github.com/github/copilot.vim \
+   #~/.config/nvim/pack/github/start/copilot.vim
 
 #run ansible (this is using nix, so I made need to change it later due to legacy issues)
 ansible-playbook local.yml
