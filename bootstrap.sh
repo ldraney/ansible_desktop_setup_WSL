@@ -74,3 +74,10 @@ cd /tmp \
   && gunzip cheat-linux-amd64.gz \
   && chmod +x cheat-linux-amd64 \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
+
+cd
+mkdir oddball
+cd oddball
+git clone git@github.com:department-of-veterans-affairs/vanotify-team.git 
+git clone git@github.com:department-of-veterans-affairs/vanotify-infra.git
+git clone git@github.com:department-of-veterans-affairs/notification-api.git
