@@ -5,11 +5,11 @@ sudo apt-get upgrade -y
 sudo apt-get install -y zsh git ansible tmux wget gh docker docker-compose
 
 #install neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo apt update -y
 sudo apt install -y neovim
-#sudo ln -s /usr/bin/nvim /home/user/bin/nvim
-sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo ln -s /usr/bin/nvim /home/user/bin/nvim
+sudo update-alternatives -y --install /usr/bin/vim vim /usr/bin/nvim 60
 
 #change default shell to zsh
 chsh -s $(which zsh)
@@ -46,6 +46,8 @@ git clone git@github.com:department-of-veterans-affairs/vanotify-team.git
 git clone git@github.com:department-of-veterans-affairs/vanotify-infra.git
 git clone git@github.com:department-of-veterans-affairs/notification-api.git
 
+cd
+cd github/ansible*
 ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
