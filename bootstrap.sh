@@ -1,5 +1,7 @@
 #!/bin/bash
 #set up ssh keys (assumes wsl2)
+sudo apt-get update -y
+sudo apt-get upgrade -y
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
 sudo chmod 400 $HOME/.ssh/*
@@ -7,38 +9,18 @@ sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
-. $HOME/.nix-profile/etc/profile.d/nix.sh
-
 mkdir -p $HOME/github
 cd $HOME/github
-
-nix-env -iA nixpkgs.git
 
 git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
+git clone git@github.com:ldraney/oddball_helps.git
 
 cd ansible*
 #. ./scripts/pyenv_setup.sh
 #/bin/bash ./scripts/pyenv_setup.sh > /tmp/outputPyEnv.log 2>&1 &
-
-nix-env -iA nixpkgs.git
-nix-env -iA nixpkgs.ansible
-nix-env -iA nixpkgs.zsh
-nix-env -iA nixpkgs.tmux
-nix-env -iA nixpkgs.wget
-nix-env -iA nixpkgs.kubectl
-nix-env -iA nixpkgs.tree
-nix-env -iA nixpkgs.htop
-nix-env -iA nixpkgs.mlocate
-nix-env -iA nixpkgs.wget
-nix-env -iA nixpkgs.feh
-nix-env -iA nixpkgs.google-cloud-sdk
-nix-env -iA nixpkgs.gh
-#these two need autocomplete, which I can't get to work with nix
-#nix-env -iA nixpkgs.terraform
-#nix-env -iA nixpkgs.awscli2
+sudo apt-get install -y zsh git ansible tmux wget gh
 #install neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
@@ -54,19 +36,9 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 ##export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
 #pyenv install 3.11.0
 
-#github extensions
-gh extension install geoffreywiseman/gh-actuse
-
-ansible-playbook local.yml
+#ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
-
-#parallel -j0 exec ::: ./scripts/first/*.sh
-#parallel -j0 exec ::: ./scripts/second/*.sh
-#parallel -j0 exec ::: ./scripts/third/*.sh
-
-#fix root to use nix path
-echo "Defaults        secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/ldraney/.nix-profile/bin\"" | sudo tee /etc/sudoers.d/path
 
 #install cheatsheet
 cd /tmp \
@@ -75,9 +47,11 @@ cd /tmp \
   && chmod +x cheat-linux-amd64 \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
+#Clone oddball repos
 cd
 mkdir oddball
 cd oddball
 git clone git@github.com:department-of-veterans-affairs/vanotify-team.git 
 git clone git@github.com:department-of-veterans-affairs/vanotify-infra.git
 git clone git@github.com:department-of-veterans-affairs/notification-api.git
+
