@@ -8,7 +8,6 @@
   with_items:
     - .local/share/nvim/site/autoload
     - .config
-    - .config/nixpkgs
 
 - name: remove paths that block symlinks
   file:
@@ -29,13 +28,10 @@
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
     - { src: 'zsh/zshrc', dest: '.zshrc' }
     - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
-    - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'zsh/zprofile', dest: '.zprofile' }
     - { src: 'environment/warprc', dest: '.warprc' }
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
-    - { src: 'nix/shell.nix', dest: 'shell.nix' }
-    - { src: 'nix/home.nix', dest: '.config/nixpkgs/home.nix' }
     - { src: 'cheat', dest: '.config/cheat' }
 
 - name: sensitive files symlinks
@@ -62,25 +58,6 @@
   #loop:
     #- { src: 'windows/settings.json', dest: 'settings.json' }
 
-#  setting up alias to nix bin
-#  this is because nix-env doesn't set up PATH to find zshrc
-#  So, I'm copying the symlinks under a new name instead
-- name: setting up path to nix bin
-  #ignore_errors: yes
-  #become_user: ldraney
-  file:
-    src: '/home/ldraney/.nix-profile/bin/{{ item.src }}'
-    dest: '/home/ldraney/.nix-profile/bin/{{ item.dest }}'
-    force: true
-    state: link
-    owner: ldraney
-    group: ldraney
-    follow: False   #https://stackoverflow.com/questions/70608966/create-link-with-specific-owner-group
-  loop:
-    - { src: 'nvim', dest: 'vim' }
-    - { src: 'nvim-ruby', dest: 'vim-ruby' }
-    - { src: 'nvim-python3', dest: 'vim-python3' }
-# 
 # install neovim plugins
 - name: make autoload directory for neovim
   become_user: ldraney
@@ -97,15 +74,6 @@
 - name: install plugins
   become_user: ldraney
   shell: 'vim --headless +PlugInstall +qall'
-  args:
-    executable: /home/ldraney/.nix-profile/bin/zsh
-
-#zsh configs
-- name: change user shell to zsh (needs restart to be effective)
-  become: yes
-  user:
-    name: "ldraney"
-    shell: /home/ldraney/.nix-profile/bin/zsh
 
 ##- name: delete old .vim directory
   #file:

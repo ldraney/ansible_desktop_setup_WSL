@@ -2,25 +2,8 @@
 #set up ssh keys (assumes wsl2)
 sudo apt-get update -y
 sudo apt-get upgrade -y
-mkdir -p $HOME/.ssh
-sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
-sudo chmod 400 $HOME/.ssh/*
-sudo chown -R ldraney:ldraney $HOME/.ssh
-eval `ssh-agent`
-ssh-add $HOME/.ssh/id_ed*
+sudo apt-get install -y zsh git ansible tmux wget gh docker docker-compose
 
-mkdir -p $HOME/github
-cd $HOME/github
-
-git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
-git clone git@github.com:ldraney/dotfilesWSL.git
-git clone git@github.com:ldraney/sensitive.git 
-git clone git@github.com:ldraney/oddball_helps.git
-
-cd ansible*
-#. ./scripts/pyenv_setup.sh
-#/bin/bash ./scripts/pyenv_setup.sh > /tmp/outputPyEnv.log 2>&1 &
-sudo apt-get install -y zsh git ansible tmux wget gh
 #install neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
@@ -28,17 +11,25 @@ sudo apt install -y neovim
 #sudo ln -s /usr/bin/nvim /home/user/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-#install pyenv
-#curl https://pyenv.run | bash
-#sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-	#libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-	#libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-##export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
-#pyenv install 3.11.0
+#change default shell to zsh
+chsh -s $(which zsh)
 
-#ansible-playbook local.yml
+#Set up SSH keys
+mkdir -p $HOME/.ssh
+sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
+sudo chmod 400 $HOME/.ssh/*
+sudo chown -R ldraney:ldraney $HOME/.ssh
+eval `ssh-agent`
+ssh-add $HOME/.ssh/id_ed*
 
-sudo usermod -aG docker ${USER}
+# personal repos
+mkdir -p $HOME/github
+cd $HOME/github
+git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
+git clone git@github.com:ldraney/dotfilesWSL.git
+git clone git@github.com:ldraney/sensitive.git 
+git clone git@github.com:ldraney/oddball_helps.git
+
 
 #install cheatsheet
 cd /tmp \
@@ -54,4 +45,20 @@ cd oddball
 git clone git@github.com:department-of-veterans-affairs/vanotify-team.git 
 git clone git@github.com:department-of-veterans-affairs/vanotify-infra.git
 git clone git@github.com:department-of-veterans-affairs/notification-api.git
+
+ansible-playbook local.yml
+
+sudo usermod -aG docker ${USER}
+
+
+
+
+
+#install pyenv
+#curl https://pyenv.run | bash
+#sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+	#libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+	#libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+##export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
+#pyenv install 3.11.0
 
