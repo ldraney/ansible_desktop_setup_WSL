@@ -8,8 +8,10 @@ sudo apt-get install -y zsh git ansible tmux wget gh docker docker-compose
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update -y
 sudo apt install -y neovim
-sudo ln -s /usr/bin/nvim /home/user/bin/nvim
-sudo update-alternatives -y --install /usr/bin/vim vim /usr/bin/nvim 60
+
+mkdir /home/ldraney/bin
+sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
 #change default shell to zsh
 chsh -s $(which zsh)
@@ -20,7 +22,7 @@ sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
 sudo chmod 400 $HOME/.ssh/*
 sudo chown -R ldraney:ldraney $HOME/.ssh
 eval `ssh-agent`
-ssh-add $HOME/.ssh/id_ed*
+sudo -U ssh-add $HOME/.ssh/id_ed*
 
 # personal repos
 mkdir -p $HOME/github
