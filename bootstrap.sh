@@ -54,19 +54,21 @@ ansible-playbook local.yml
 
 sudo usermod -aG docker ${USER}
 
+#install aws cli
+sudo apt-get install unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+#install pyenv
+curl https://pyenv.run | bash
+sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+#export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
+pyenv install 3.11.0
+
 #install nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts
-
-
-
-
-#install pyenv
-#curl https://pyenv.run | bash
-#sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-	#libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-	#libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-##export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
-#pyenv install 3.11.0
-
