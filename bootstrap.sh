@@ -68,7 +68,12 @@ sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zli
 export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
 pyenv install 3.11.0
 
-#install nodejs
+#install nodejs (necessary for copilot)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts
+
+#install terraform
+git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+tfenv install 1.1.3
+tfenv use 1.1.3
