@@ -55,6 +55,7 @@ ansible-playbook local.yml
 sudo usermod -aG docker ${USER}
 
 #install aws cli
+cd /home/ldraney
 sudo apt-get install unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
