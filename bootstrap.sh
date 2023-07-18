@@ -30,8 +30,7 @@ cd $HOME/github
 git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
-git clone git@github.com:ldraney/oddball_helps.git
-
+git clone --bare git@github.com:ldraney/oddball_helps.git oddball_helps
 
 #install cheatsheet
 cd /tmp \
