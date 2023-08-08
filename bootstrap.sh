@@ -32,7 +32,7 @@ git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 git clone git@github.com:ldraney/DevOpsDialecticAI-infra.git
-git clone https://github.com/ldraney/DevOpsDialecticAI
+git clone git@github.com:ldraney/DevOpsDialecticAI.git
 
 #install cheatsheet
 cd /tmp \
