@@ -31,8 +31,14 @@ git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
-git clone git@github.com:ldraney/DevOpsDialecticAI-infra.git
-git clone git@github.com:ldraney/DevOpsDialecticAI.git
+
+git clone --bare git@github.com:ldraney/DevOpsDialecticAI-infra.git DevOpsDialecticAI-infra
+cd DevOpsDialecticAI-infra
+git worktree add master
+cd $HOME/github
+git clone --bare git@github.com:ldraney/DevOpsDialecticAI.git DevOpsDialecticAI
+cd DevOpsDialecticAI
+git worktree add master
 
 #install cheatsheet
 cd /tmp \
