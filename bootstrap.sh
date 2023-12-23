@@ -1,3 +1,7 @@
+# um, which user am I suposed to run this as?  
+# I'm pretty sure its ansible that does it, somewhere in there... 
+# I think I'm currently running it as ldraney and not root
+
 #!/bin/bash
 #set up ssh keys (assumes wsl2)
 sudo apt-get update -y
@@ -103,3 +107,12 @@ cd luarocks-3.9.2
 make
 sudo make install
 sudo luarocks install busted
+
+# install pip, pipx, poetry
+sudo apt install -y python3-pip
+sudo apt install python3.10-venv
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+pipx install poetry
+
+
