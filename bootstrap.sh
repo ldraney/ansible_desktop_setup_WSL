@@ -32,14 +32,6 @@ git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 
-git clone --bare git@github.com:ldraney/DevOpsDialecticAI-infra.git DevOpsDialecticAI-infra
-cd DevOpsDialecticAI-infra
-git worktree add master
-cd $HOME/github
-git clone --bare git@github.com:ldraney/DevOpsDialecticAI.git DevOpsDialecticAI
-cd DevOpsDialecticAI
-git worktree add master
-
 #install cheatsheet
 cd /tmp \
   && wget https://github.com/cheat/cheat/releases/download/4.4.0/cheat-linux-amd64.gz \
@@ -80,16 +72,16 @@ export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
 pyenv install 3.11.0
 
 #install nodejs (necessary for copilot)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts
 
 #install terraform
 git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
 # latest terraform
-#zsh
-#tfenv install 1.6.5
-#tfenv use 1.6.5
+zsh
+tfenv install 1.6.5
+tfenv use 1.6.5
 
 # LUAROCKS
 # install LuaRocks for Neovim
@@ -111,4 +103,3 @@ cd luarocks-3.9.2
 make
 sudo make install
 sudo luarocks install busted
-
