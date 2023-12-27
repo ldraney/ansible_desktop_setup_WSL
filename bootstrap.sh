@@ -107,13 +107,3 @@ cd luarocks-3.9.2
 make
 sudo make install
 sudo luarocks install busted
-
-# install pip, pipx, poetry
-# these should all maybe be in actual projects, not in my bootstrap.sh, but maybe both is best, actually, since not everyone wants pipx and poetry on their local.
-sudo apt install -y python3-pip
-sudo apt install python3.10-venv
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-pipx install poetry
-
-
