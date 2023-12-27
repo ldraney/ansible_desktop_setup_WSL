@@ -68,10 +68,10 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 #install pyenv
-curl https://pyenv.run | bash
 sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
 	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+curl https://pyenv.run | bash
 export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
 pyenv install 3.11.0
 
@@ -109,6 +109,7 @@ sudo make install
 sudo luarocks install busted
 
 # install pip, pipx, poetry
+# these should all maybe be in actual projects, not in my bootstrap.sh, but maybe both is best, actually, since not everyone wants pipx and poetry on their local.
 sudo apt install -y python3-pip
 sudo apt install python3.10-venv
 python3 -m pip install --user pipx
