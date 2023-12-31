@@ -73,8 +73,8 @@ sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zli
 	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 curl https://pyenv.run | bash
-export PATH=$PATH:/home/ldraney/.pyenv/bin/pyenv
-pyenv install 3.11.0
+export PATH=$PATH:$HOME/.pyenv/bin/pyenv
+pyenv install 3.11.2
 
 #install nodejs (necessary for copilot)
 curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
