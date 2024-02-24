@@ -37,6 +37,12 @@ git clone git@github.com:ldraney/sensitive.git
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 git clone git@github.com:ldraney/idp-templates.git
 
+# iss repos
+git clone git@github.com:ldraney/iss-setter-docs.git
+git clone git@github.com:ldraney/iss-setter-api.git
+git clone git@github.com:ldraney/iss-setter-app.git
+git clone git@github.com:ldraney/iss-setter-infra.git
+
 #install cheatsheet
 cd /tmp \
   && wget https://github.com/cheat/cheat/releases/download/4.4.0/cheat-linux-amd64.gz \
