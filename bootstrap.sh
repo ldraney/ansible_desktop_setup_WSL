@@ -40,7 +40,7 @@ git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 git clone git@github.com:ldraney/iss-setter-docs.git
 git clone git@github.com:ldraney/iss-setter-api.git
 git clone git@github.com:ldraney/iss-setter-app.git
-git clone git@github.com:ldraney/iss-setter-infra.git
+git clone git@github.com:dialectic-devops/iss-setter-infra.git
 git clone git@github.com:ldraney/iss-helps.git
 
 #install cheatsheet
