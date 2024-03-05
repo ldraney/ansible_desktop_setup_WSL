@@ -37,6 +37,8 @@ git clone git@github.com:ldraney/sensitive.git
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 
 # iss repos
+mkdir -p $HOME/iss
+cd $HOME/iss
 git clone git@github.com:ldraney/iss-setter-docs.git
 git clone git@github.com:ldraney/iss-setter-api.git
 git clone git@github.com:ldraney/iss-setter-app.git
