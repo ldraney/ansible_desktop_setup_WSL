@@ -17,9 +17,6 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-#change default shell to zsh
-sudo chsh -s $(which zsh) ldraney
-
 #Set up SSH keys
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
@@ -66,6 +63,9 @@ git clone --bare git@github.com:department-of-veterans-affairs/notification-util
 cd
 cd github/ansible*
 ansible-playbook local.yml
+
+#change default shell to zsh
+sudo chsh -s $(which zsh) ldraney
 
 sudo usermod -aG docker ${USER}
 
