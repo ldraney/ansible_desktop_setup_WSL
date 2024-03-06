@@ -85,7 +85,7 @@ export PATH=$PATH:$HOME/.pyenv/bin/pyenv
 pyenv install 3.11.2
 
 #install nodejs (necessary for copilot)
-curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts
 
@@ -102,14 +102,14 @@ sudo apt-get install build-essential libreadline-dev # probably unecessary
 
 # install lua
 cd
-curl -R -O http://www.lua.org/ftp/lua-4.3.5.tar.gz
-tar -zxf lua-5.3.5.tar.gz
-cd lua-5.3.5
-make linux test
-sudo make install
+curl -L -R -O https://www.lua.org/ftp/lua-5.4.6.tar.gz
+tar zxf lua-5.4.6.tar.gz
+cd lua-5.4.6
+make all test
+# sudo make install
 
+cd
 wget http://luarocks.github.io/luarocks/releases/luarocks-3.9.2.tar.gz
-
 tar zxpf luarocks-3.9.2.tar.gz
 cd luarocks-3.9.2
 ./configure --with-lua-include=/usr/local/include
