@@ -1,9 +1,3 @@
-- name: Setup user environment with dotfiles
-  hosts: localhost
-  become: yes
-  become_user: ldraney
-
-  tasks:
     - name: Create necessary directories
       file:
         path: "{{ item }}"
