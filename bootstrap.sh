@@ -6,7 +6,7 @@
 #set up ssh keys (assumes wsl2)
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y zsh git ansible tmux wget gh docker docker-compose
+sudo apt-get install -y zsh git ansible tmux wget gh docker
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -21,12 +21,12 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 sudo chsh -s $(which zsh) ldraney
 
 #Set up SSH keys
-#mkdir -p $HOME/.ssh
-#sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
-#sudo chmod 400 $HOME/.ssh/*
-#sudo chown -R ldraney:ldraney $HOME/.ssh
-#eval `ssh-agent`
-#ssh-add $HOME/.ssh/id_ed*
+mkdir -p $HOME/.ssh
+sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
+sudo chmod 400 $HOME/.ssh/*
+sudo chown -R ldraney:ldraney $HOME/.ssh
+eval `ssh-agent`
+ssh-add $HOME/.ssh/id_ed*
 
 # personal repos
 mkdir -p $HOME/github
