@@ -12,6 +12,7 @@
         state: absent
         path: /home/ldraney/.config/cheat
 
+
     - name: Create symbolic links for dotfiles
       file:
         src: "/home/ldraney/github/dotfilesWSL/{{ item.src }}"
@@ -21,12 +22,15 @@
       loop:
         - { src: 'nvim/', dest: '.config/nvim' }
         - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
-        - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
+        - { src: 'zsh/', dest: '.zsh' }
         - { src: 'zsh/zshrc', dest: '.zshrc' }
         - { src: 'environment/warprc', dest: '.warprc' }
         - { src: 'customCommands', dest: '.customCommands' }
         - { src: 'git/gitconfig', dest: '.gitconfig' }
         - { src: 'cheat', dest: '.config/cheat' }
+        # Add Oh My Zsh setup
+        - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' } # Ensure this src path correctly points to your Oh My Zsh directory
+
 
     - name: Handle sensitive files
       file:
