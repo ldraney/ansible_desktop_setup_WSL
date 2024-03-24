@@ -53,13 +53,13 @@
     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
 # THE BELOW MAY CHANGE BASED, I BELIEVE KICKSTART.NVIM LIKES PACMAN 
-- name: Install neovim plugin manager from junegunn
-  get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
-  ignore_errors: yes
+# - name: Install neovim plugin manager from junegunn
+  # get_url:
+    # url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    # dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
+  # ignore_errors: yes
 
-- name: Install plugins with neovim
-  shell: 'vim --headless +PlugInstall +qall'
-  ignore_errors: yes
+# - name: Install plugins with neovim
+  # shell: 'vim --headless +PlugInstall +qall'
+  # ignore_errors: yes
 
