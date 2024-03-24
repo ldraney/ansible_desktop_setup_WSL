@@ -18,14 +18,13 @@
         state: absent
         path: /home/ldraney/.config/cheat
 
-    - name: Create symbolic links for dotfiles
+    - name: Symlinks for some dotfiles
       file:
-        src: "/home/ldraney/github/dotfilesWSL/{{ item.src }}"
+        src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
         dest: "/home/ldraney/{{ item.dest }}"
         state: link
         force: true
       loop:
-        - { src: 'nvim/', dest: '.config/nvim' }
         - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
         - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
         - { src: 'zsh/zshrc', dest: '.zshrc' }
@@ -34,9 +33,18 @@
         - { src: 'git/gitconfig', dest: '.gitconfig' }
         - { src: 'cheat', dest: '.config/cheat' }
 
-    - name: Handle sensitive files
+    - name: Symlinks for neovim
       file:
-        src: "/home/ldraney/github/sensitive/{{ item.src }}"
+        src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
+        dest: "/home/ldraney/{{ item.dest }}"
+        state: link
+        force: true
+      loop:
+        - { src: 'nvim/', dest: '.config/nvim' }
+
+    - name: Symlinks for sensitive files
+      file:
+        src: "/home/ldraney/personal/sensitive/{{ item.src }}"
         dest: "/home/ldraney/{{ item.dest }}"
         state: link
         force: true
@@ -46,13 +54,14 @@
         - { src: 'vim', dest: '.vim' }
         - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
-    - name: Install neovim plugin manager from junegunn
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
-      ignore_errors: yes
+# THE BELOW MAY CHANGE BASED, I BELIEVE KICKSTART.NVIM LIKES PACMAN 
+    # - name: Install neovim plugin manager from junegunn
+      # get_url:
+        # url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        # dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
+      # ignore_errors: yes
 
-    - name: Install plugins with neovim
-      shell: 'vim --headless +PlugInstall +qall'
-      ignore_errors: yes
+    # - name: Install plugins with neovim
+      # shell: 'vim --headless +PlugInstall +qall'
+      # ignore_errors: yes
 

@@ -69,6 +69,7 @@ git clone --bare git@github.com:department-of-veterans-affairs/notification-api.
 
 # Use Ansible for setting up:
 # - symlinks
+# - directories
 cd
 cd personal/ansible*
 ansible-playbook local.yml
