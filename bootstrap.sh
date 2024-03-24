@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# export ANSIBLE_BRANCH="master"
 export ANSIBLE_BRANCH="kickstart-nvim"
 
 cd $HOME
@@ -76,8 +77,11 @@ cd oddball
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
+cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH
 ansible-playbook local.yml
+
+# Installation scripts for important tools
+cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
 
 # Install Docker
 ./docker-setup.sh
