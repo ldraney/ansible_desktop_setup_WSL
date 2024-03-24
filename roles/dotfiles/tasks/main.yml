@@ -32,7 +32,8 @@
 - name: Symlinks for neovim
   file:
     # src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
-    src: "/home/ldraney/personal/kickstart.nvim/master/{{ item.src }}"
+    # src: "/home/ldraney/personal/kickstart.nvim/master/{{ item.src }}"
+    src: "/home/ldraney/personal/kickstart.nvim/kickstart-nvim/{{ item.src }}"
     dest: "/home/ldraney/{{ item.dest }}"
     state: link
     force: true
