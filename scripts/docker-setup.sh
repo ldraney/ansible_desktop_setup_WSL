@@ -29,12 +29,13 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # Adds the current user to the Docker group to manage Docker as a non-root user.
 sudo usermod -aG docker $USER
 
+# REMOVED the following because it causes a new shell and disrupts bootstrap
 # Refreshes the group membership for the current user, applying changes made by usermod.
-exec su -l $USER
+# exec su -l $USER
 
 # Checks the installed Docker version to ensure it's correctly installed.
-docker --version
+# docker --version
 
 # Runs a test Docker container to verify that Docker is correctly set up and running.
-docker run hello-world
+# docker run hello-world
 
