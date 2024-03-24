@@ -1,18 +1,19 @@
-# um, which user am I suposed to run this as?  
-# I'm pretty sure its ansible that does it, somewhere in there... 
-# I think I'm currently running it as ldraney and not root
-
 #!/bin/bash
-#set up ssh keys (assumes wsl2)
+
+# export ANSIBLE_BRANCH="master"
+export ANSIBLE_BRANCH="kickstart-nvim"
+
+cd $HOME
 sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get install -y zsh git ansible tmux wget gh docker
+# sudo apt-get upgrade -y
+sudo apt-get install -y git ansible tmux zsh wget gh docker
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update -y
 sudo apt install -y neovim
 
+# Make vim be the alias for nvim
 mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
@@ -26,93 +27,86 @@ eval `ssh-agent`
 ssh-add $HOME/.ssh/id_ed*
 
 # personal repos
-mkdir -p $HOME/github
-cd $HOME/github
-git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
+mkdir -p $HOME/personal
+cd $HOME/personal
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 
-# iss repos
-mkdir -p $HOME/iss
-cd $HOME/iss
-git clone git@github.com:ldraney/iss-setter-docs.git
-git clone git@github.com:ldraney/iss-setter-api.git
-git clone git@github.com:ldraney/iss-setter-app.git
-git clone git@github.com:dialectic-devops/iss-setter-infra.git
-git clone git@github.com:ldraney/iss-helps.git
+# Set up ansible in personal repos directory
+cd $HOME/personal
+git clone --bare git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
+cd ansible*
+git worktree add master
+git worktree add $ANSIBLE_BRANCH
 
-#install cheatsheet
+# Set up kickstart.nvim in personal repos directory
+# This is important because symlinks for nvim setup will soon go here instead of the dotfiles repo
+cd $HOME/personal
+git clone --bare git@github.com:ldraney/kickstart.nvim.git kickstart.nvim
+cd kickstart.nvim
+git worktree add master
+
+# # iss repos
+# mkdir -p $HOME/iss
+# cd $HOME/iss
+# git clone git@github.com:ldraney/iss-setter-docs.git
+# git clone git@github.com:ldraney/iss-setter-api.git
+# git clone git@github.com:ldraney/iss-setter-app.git
+# git clone git@github.com:dialectic-devops/iss-setter-infra.git
+# git clone git@github.com:ldraney/iss-helps.git
+
+# #install cheatsheet
 cd /tmp \
   && wget https://github.com/cheat/cheat/releases/download/4.4.0/cheat-linux-amd64.gz \
   && gunzip cheat-linux-amd64.gz \
   && chmod +x cheat-linux-amd64 \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
-#Clone oddball repos
-cd
+# #Clone oddball repos
+cd $HOME
 mkdir oddball
 cd oddball
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
-git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
-git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
 
-cd
-cd github/ansible*
+# Use Ansible for setting up:
+# - symlinks
+# - directories
+cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH
 ansible-playbook local.yml
 
-#change default shell to zsh
-sudo chsh -s $(which zsh) ldraney
+# Installation scripts for important tools
+cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
+chmod +x ./docker-setup.sh
+chmod +x ./pyenv-setup.sh
+chmod +x ./aws-cli-setup.sh
+chmod +x ./terraform-setup.sh
 
-sudo usermod -aG docker ${USER}
+# Install Docker
+./docker-setup.sh
 
-#install aws cli
-cd /home/ldraney
-sudo apt-get install unzip
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+#Install pyenv
+./pyenv-setup.sh 
 
-#install pyenv
-sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-	libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-	libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-curl https://pyenv.run | bash
-export PATH=$PATH:$HOME/.pyenv/bin/pyenv
-pyenv install 3.11.2
+# #install aws cli
+./aws-cli-setup.sh
 
-#install nodejs (necessary for copilot)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# install terraform
+./terraform-setup.sh
+
+# #install nodejs 
+curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install --lts
 
-#install terraform
-git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
-# latest terraform
-zsh
-tfenv install 1.6.5
-tfenv use 1.6.5
+# install LUA development tools
+# ./scripts/lua-development-setup.sh
 
-# LUAROCKS
-# install LuaRocks for Neovim
-sudo apt-get install build-essential libreadline-dev # probably unecessary
-
-# install lua
-cd
-curl -L -R -O https://www.lua.org/ftp/lua-5.4.6.tar.gz
-tar zxf lua-5.4.6.tar.gz
-cd lua-5.4.6
-make all test
-# sudo make install
-
-cd
-wget http://luarocks.github.io/luarocks/releases/luarocks-3.9.2.tar.gz
-tar zxpf luarocks-3.9.2.tar.gz
-cd luarocks-3.9.2
-./configure --with-lua-include=/usr/local/include
-make
-sudo make install
-sudo luarocks install busted
+#change default shell to zsh
+# I think this should be a last step, and commands should be run with bash
+sudo chsh -s $(which zsh) ldraney
