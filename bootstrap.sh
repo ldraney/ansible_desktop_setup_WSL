@@ -1,5 +1,8 @@
 #!/bin/bash
-cd ~
+
+export ANSIBLE_BRANCH="kickstart.nvim"
+
+cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
 sudo apt-get install -y git ansible tmux zsh wget gh docker
@@ -29,13 +32,20 @@ ssh-add $HOME/.ssh/id_ed*
 # personal repos
 mkdir -p $HOME/personal
 cd $HOME/personal
-git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 
+# Set up ansible in personal repos directory
+cd $HOME/personal
+git clone --bare git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
+cd ansible*
+git worktree add master
+git worktree add kickstart-nvim
+
 # Set up kickstart.nvim in personal repos directory
 # This is important because symlinks for nvim setup will soon go here instead of the dotfiles repo
+cd $HOME/personal
 git clone --bare git@github.com:ldraney/kickstart.nvim.git kickstart.nvim
 cd kickstart.nvim
 git worktree add master
@@ -57,7 +67,7 @@ cd /tmp \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
 # #Clone oddball repos
-cd
+cd $HOME
 mkdir oddball
 cd oddball
 # git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
@@ -70,26 +80,25 @@ cd oddball
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd ~
-cd personal/ansible*
+cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
 ansible-playbook local.yml
 
 # Install Docker
-./scripts/docker-setup.sh
+./docker-setup.sh
 
 #Install pyenv
-./scripts/pyenv-setup.sh 
+./pyenv-setup.sh 
 
 # #install aws cli
-./scripts/aws-cli-setup.sh
+./aws-cli-setup.sh
+
+# install terraform
+./terraform-setup.sh
 
 # #install nodejs (necessary for copilot)
 # curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 # source ~/.nvm/nvm.sh
 # nvm install --lts
-
-# install terraform
-./scripts/terraform-setup.sh
 
 # install LUA development tools
 # ./scripts/lua-development-setup.sh
