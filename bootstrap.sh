@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export ANSIBLE_BRANCH="kickstart.nvim"
+export ANSIBLE_BRANCH="kickstart-nvim"
 
 cd $HOME
 sudo apt-get update -y
