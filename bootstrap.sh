@@ -60,9 +60,9 @@ cd /tmp \
 cd
 mkdir oddball
 cd oddball
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
 # git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
 # git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
 # git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
@@ -70,7 +70,7 @@ git clone --bare git@github.com:department-of-veterans-affairs/notification-api.
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd
+cd ~
 cd personal/ansible*
 ansible-playbook local.yml
 
