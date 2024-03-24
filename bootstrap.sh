@@ -46,6 +46,7 @@ cd $HOME/personal
 git clone --bare git@github.com:ldraney/kickstart.nvim.git kickstart.nvim
 cd kickstart.nvim
 git worktree add master
+git worktree add $ANSIBLE_BRANCH
 
 # # iss repos
 # mkdir -p $HOME/iss
