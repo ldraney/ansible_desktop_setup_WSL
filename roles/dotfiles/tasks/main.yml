@@ -1,67 +1,62 @@
-- name: Setup user environment with dotfiles
-  hosts: localhost
-  become: yes
-  become_user: ldraney
+---
+- name: Create necessary directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - /home/ldraney/.local/share/nvim/site/autoload
+    - /home/ldraney/.config
 
-  tasks:
-    - name: Create necessary directories
-      file:
-        path: "{{ item }}"
-        state: directory
-        mode: '0755'
-      loop:
-        - /home/ldraney/.local/share/nvim/site/autoload
-        - /home/ldraney/.config
+- name: Remove paths that block symlinks
+  file:
+    state: absent
+    path: /home/ldraney/.config/cheat
 
-    - name: Remove paths that block symlinks
-      file:
-        state: absent
-        path: /home/ldraney/.config/cheat
+- name: Symlinks for some dotfiles
+  file:
+    src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
+    dest: "/home/ldraney/{{ item.dest }}"
+    state: link
+    force: true
+  loop:
+    - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
+    - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'environment/warprc', dest: '.warprc' }
+    - { src: 'customCommands', dest: '.customCommands' }
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+    - { src: 'cheat', dest: '.config/cheat' }
 
-    - name: Symlinks for some dotfiles
-      file:
-        src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
-        dest: "/home/ldraney/{{ item.dest }}"
-        state: link
-        force: true
-      loop:
-        - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
-        - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
-        - { src: 'zsh/zshrc', dest: '.zshrc' }
-        - { src: 'environment/warprc', dest: '.warprc' }
-        - { src: 'customCommands', dest: '.customCommands' }
-        - { src: 'git/gitconfig', dest: '.gitconfig' }
-        - { src: 'cheat', dest: '.config/cheat' }
+- name: Symlinks for neovim
+  file:
+    src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
+    dest: "/home/ldraney/{{ item.dest }}"
+    state: link
+    force: true
+  loop:
+    - { src: 'nvim/', dest: '.config/nvim' }
 
-    - name: Symlinks for neovim
-      file:
-        src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
-        dest: "/home/ldraney/{{ item.dest }}"
-        state: link
-        force: true
-      loop:
-        - { src: 'nvim/', dest: '.config/nvim' }
-
-    - name: Symlinks for sensitive files
-      file:
-        src: "/home/ldraney/personal/sensitive/{{ item.src }}"
-        dest: "/home/ldraney/{{ item.dest }}"
-        state: link
-        force: true
-      loop:
-        - { src: 'zsh/zsh_history', dest: '.zsh_history' }
-        - { src: 'zsh/zshenv', dest: '.zshenv' }
-        - { src: 'vim', dest: '.vim' }
-        - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
+- name: Symlinks for sensitive files
+  file:
+    src: "/home/ldraney/personal/sensitive/{{ item.src }}"
+    dest: "/home/ldraney/{{ item.dest }}"
+    state: link
+    force: true
+  loop:
+    - { src: 'zsh/zsh_history', dest: '.zsh_history' }
+    - { src: 'zsh/zshenv', dest: '.zshenv' }
+    - { src: 'vim', dest: '.vim' }
+    - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
 # THE BELOW MAY CHANGE BASED, I BELIEVE KICKSTART.NVIM LIKES PACMAN 
-    # - name: Install neovim plugin manager from junegunn
-      # get_url:
-        # url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        # dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
-      # ignore_errors: yes
+# - name: Install neovim plugin manager from junegunn
+  # get_url:
+    # url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    # dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
+  # ignore_errors: yes
 
-    # - name: Install plugins with neovim
-      # shell: 'vim --headless +PlugInstall +qall'
-      # ignore_errors: yes
+# - name: Install plugins with neovim
+  # shell: 'vim --headless +PlugInstall +qall'
+  # ignore_errors: yes
 
