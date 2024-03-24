@@ -94,10 +94,10 @@ chmod +x ./terraform-setup.sh
 ./pyenv-setup.sh 
 
 # #install aws cli
-./aws-cli-setup.sh
+# ./aws-cli-setup.sh
 
 # install terraform
-./terraform-setup.sh
+# ./terraform-setup.sh
 
 # #install nodejs 
 curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
