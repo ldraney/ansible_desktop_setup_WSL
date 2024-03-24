@@ -83,21 +83,21 @@ ansible-playbook local.yml
 # Installation scripts for important tools
 cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
 chmod +x ./docker-setup.sh
-chmod +x ./pyenv-setup.sh
-chmod +x ./aws-cli-setup.sh
-chmod +x ./terraform-setup.sh
+# chmod +x ./pyenv-setup.sh
+# chmod +x ./aws-cli-setup.sh
+# chmod +x ./terraform-setup.sh
 
 # Install Docker
 ./docker-setup.sh
 
 #Install pyenv
-./pyenv-setup.sh 
+# ./pyenv-setup.sh 
 
 # #install aws cli
-./aws-cli-setup.sh
+# ./aws-cli-setup.sh
 
 # install terraform
-./terraform-setup.sh
+# ./terraform-setup.sh
 
 #change default shell to zsh
 # I think this should be a last step, and commands should be run with bash

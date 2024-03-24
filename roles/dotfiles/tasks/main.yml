@@ -23,6 +23,7 @@
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
     - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
     - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
     - { src: 'environment/warprc', dest: '.warprc' }
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
