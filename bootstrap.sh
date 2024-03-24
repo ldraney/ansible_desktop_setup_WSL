@@ -82,6 +82,10 @@ ansible-playbook local.yml
 
 # Installation scripts for important tools
 cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
+chmod +x ./docker-setup.sh
+chmod +x ./pyenv-setup.sh
+chmod +x ./aws-cli-setup.sh
+chmod +x ./terraform-setup.sh
 
 # Install Docker
 ./docker-setup.sh
