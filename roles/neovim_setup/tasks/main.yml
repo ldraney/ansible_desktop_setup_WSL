@@ -1,0 +1,57 @@
+---
+- name: Configure Neovim environment on Ubuntu 22.04
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add Neovim PPA
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/unstable
+        state: present
+
+    - name: Update repositories cache and install Neovim dependencies
+      ansible.builtin.apt:
+        update_cache: yes
+        name:
+          - make
+          - gcc
+          - ripgrep
+          - unzip
+          - neovim
+          - nodejs
+          - npm
+        state: present
+
+    - name: Install pip for Python3
+      ansible.builtin.apt:
+        name: python3-pip
+        state: present
+
+    - name: Install Python packages for Neovim
+      ansible.builtin.pip:
+        name:
+          - pynvim
+          - neovim-remote
+
+    - name: Install npm packages for Neovim
+      ansible.builtin.npm:
+        name:
+          - neovim
+
+    - name: Clone kickstart.nvim configuration
+      ansible.builtin.git:
+        repo: https://github.com/nvim-lua/kickstart.nvim.git
+        dest: "{{ ansible_env.HOME }}/.config/nvim"
+        version: master
+        force: yes
+
+    - name: Ensure directory exists for custom Neovim plugins
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/nvim/lua/custom/plugins"
+        state: directory
+
+    - name: Install YAML support for Neovim (optional, based on user preference)
+      ansible.builtin.shell:
+        cmd: "npm install -g yaml-language-server"
+
+    - name: Additional configuration or plugin installation steps go here
+
