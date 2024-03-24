@@ -17,10 +17,6 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-#change default shell to zsh
-# I think this should be a last step, and commands should be run with bash
-# sudo chsh -s $(which zsh) ldraney
-
 #Set up SSH keys
 mkdir -p $HOME/.ssh
 sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
@@ -41,7 +37,7 @@ cd $HOME/personal
 git clone --bare git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
 cd ansible*
 git worktree add master
-git worktree add kickstart-nvim
+git worktree add $ANSIBLE_BRANCH
 
 # Set up kickstart.nvim in personal repos directory
 # This is important because symlinks for nvim setup will soon go here instead of the dotfiles repo
@@ -94,6 +90,11 @@ ansible-playbook local.yml
 
 # install terraform
 ./terraform-setup.sh
+
+#change default shell to zsh
+# I think this should be a last step, and commands should be run with bash
+# sudo chsh -s $(which zsh) ldraney
+
 
 # #install nodejs (necessary for copilot)
 # curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
