@@ -73,7 +73,7 @@ git clone --bare git@github.com:department-of-veterans-affairs/notification-api.
 git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
 git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
 git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
-git clone --bare git@gitub.com:department-of-veterans-affairs/notification-portal.git notification-portal
+git clone --bare git@github.com:department-of-veterans-affairs/notification-portal.git notification-portal
 
 # Use Ansible for setting up:
 # - symlinks
