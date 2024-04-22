@@ -26,7 +26,7 @@ ssh-add $HOME/.ssh/id_ed*
 # personal repos
 mkdir -p $HOME/personal
 cd $HOME/personal
-git clone git@github.com:ldraney/dotfilesWSL.git
+git clone --recurse-submodules git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
