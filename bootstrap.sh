@@ -32,20 +32,7 @@ cd $HOME/personal
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
 git clone git@github.com:ldraney/oddball_helps.git oddball_helps
-
-# Set up ansible in personal repos directory
-cd $HOME/personal
-git clone --bare git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
-cd ansible*
-git worktree add master
-git worktree add $ANSIBLE_BRANCH
-
-# Set up kickstart.nvim in personal repos directory
-# This is important because symlinks for nvim setup will soon go here instead of the dotfiles repo
-cd $HOME/personal
-git clone --bare git@github.com:ldraney/kickstart.nvim.git kickstart.nvim
-cd kickstart.nvim
-git worktree add master
+git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
 
 # # iss repos
 # mkdir -p $HOME/iss
