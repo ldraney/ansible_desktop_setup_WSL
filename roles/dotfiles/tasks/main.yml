@@ -28,15 +28,7 @@
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'cheat', dest: '.config/cheat' }
-
-- name: Symlinks for neovim
-  file:
-    src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
-    dest: "/home/ldraney/{{ item.dest }}"
-    state: link
-    force: true
-  loop:
-    - { src: 'nvim/', dest: '.config/nvim' }
+    - { src: 'kickstart.nvim', dest: '.config/nvim' }
 
 - name: Symlinks for sensitive files
   file:
