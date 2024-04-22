@@ -51,16 +51,16 @@ cd /tmp \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
 # #Clone oddball repos
-cd $HOME
-mkdir oddball
-cd oddball
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
-git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
-git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
-git clone --bare git@github.com:department-of-veterans-affairs/notification-portal.git notification-portal
+# cd $HOME
+# mkdir oddball
+# cd oddball
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
+# git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
+# git clone --bare git@github.com:department-of-veterans-affairs/notification-portal.git notification-portal
 
 # Use Ansible for setting up:
 # - symlinks
@@ -69,7 +69,7 @@ cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH
 ansible-playbook local.yml
 
 # Installation scripts for important tools
-cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
+cd $HOME/personal/ansible_desktop_setup_WSL/scripts
 chmod +x ./docker-setup.sh
 chmod +x ./pyenv-setup.sh
 chmod +x ./aws-cli-setup.sh
