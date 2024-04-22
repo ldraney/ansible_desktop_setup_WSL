@@ -28,7 +28,7 @@
     - { src: 'customCommands', dest: '.customCommands' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'cheat', dest: '.config/cheat' }
-    - { src: 'kickstart.nvim', dest: '.config/nvim' }
+    - { src: 'kickstart.nvim/nvim-old', dest: '.config/nvim' }
 
 - name: Symlinks for sensitive files
   file:
