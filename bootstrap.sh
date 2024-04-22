@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# export ANSIBLE_BRANCH="master"
-export ANSIBLE_BRANCH="kickstart-nvim"
-
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
@@ -65,36 +62,36 @@ cd /tmp \
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH
+cd $HOME/personal/ansible_desktop_setup_WSL/
 ansible-playbook local.yml
 
 # Installation scripts for important tools
-cd $HOME/personal/ansible_desktop_setup_WSL/scripts
-chmod +x ./docker-setup.sh
-chmod +x ./pyenv-setup.sh
-chmod +x ./aws-cli-setup.sh
-chmod +x ./terraform-setup.sh
+# cd $HOME/personal/ansible_desktop_setup_WSL/scripts
+# chmod +x ./docker-setup.sh
+# chmod +x ./pyenv-setup.sh
+# chmod +x ./aws-cli-setup.sh
+# chmod +x ./terraform-setup.sh
 
-# Install Docker
-./docker-setup.sh
+# # Install Docker
+# ./docker-setup.sh
 
-#Install pyenv
-./pyenv-setup.sh 
+# #Install pyenv
+# ./pyenv-setup.sh 
 
-# #install aws cli
-./aws-cli-setup.sh
+# # #install aws cli
+# ./aws-cli-setup.sh
 
-# install terraform
-./terraform-setup.sh
+# # install terraform
+# ./terraform-setup.sh
 
-# #install nodejs 
-curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install --lts
+# # #install nodejs 
+# curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+# source ~/.nvm/nvm.sh
+# nvm install --lts
 
-# install LUA development tools
-# ./scripts/lua-development-setup.sh
+# # install LUA development tools
+# # ./scripts/lua-development-setup.sh
 
-#change default shell to zsh
-# I think this should be a last step, and commands should be run with bash
-sudo chsh -s $(which zsh) ldraney
+# #change default shell to zsh
+# # I think this should be a last step, and commands should be run with bash
+# sudo chsh -s $(which zsh) ldraney
