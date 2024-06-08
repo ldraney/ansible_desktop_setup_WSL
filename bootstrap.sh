@@ -6,7 +6,7 @@ export ANSIBLE_BRANCH="kickstart-nvim"
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
-sudo apt-get install -y git ansible tmux zsh wget gh docker
+sudo apt-get install -y git ansible tmux zsh wget gh
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -18,20 +18,13 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-#Set up SSH keys
-mkdir -p $HOME/.ssh
-sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
-sudo chmod 400 $HOME/.ssh/*
-sudo chown -R ldraney:ldraney $HOME/.ssh
-eval `ssh-agent`
-ssh-add $HOME/.ssh/id_ed*
+## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
 
 # personal repos
 mkdir -p $HOME/personal
 cd $HOME/personal
 git clone git@github.com:ldraney/dotfilesWSL.git
 git clone git@github.com:ldraney/sensitive.git 
-git clone git@github.com:ldraney/oddball_helps.git oddball_helps
 
 # Set up ansible in personal repos directory
 cd $HOME/personal
