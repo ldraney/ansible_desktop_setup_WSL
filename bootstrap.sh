@@ -3,7 +3,7 @@
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
-sudo apt-get install -y git ansible tmux zsh wget gh
+sudo apt-get install -y git ansible tmux zsh wget gh make unzip gcc
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
