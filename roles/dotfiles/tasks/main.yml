@@ -36,17 +36,17 @@
     state: link
     force: true
 
-# - name: Symlinks for sensitive files
-#   file:
-#     src: "/home/ldraney/personal/sensitive/{{ item.src }}"
-#     dest: "/home/ldraney/{{ item.dest }}"
-#     state: link
-#     force: true
-#   loop:
-#     - { src: 'zsh/zsh_history', dest: '.zsh_history' }
-#     - { src: 'zsh/zshenv', dest: '.zshenv' }
-#     - { src: 'vim', dest: '.vim' }
-#     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
+- name: Symlinks for sensitive files
+  file:
+    src: "/home/ldraney/personal/sensitive/{{ item.src }}"
+    dest: "/home/ldraney/{{ item.dest }}"
+    state: link
+    force: true
+  loop:
+    # - { src: 'zsh/zsh_history', dest: '.zsh_history' }
+    - { src: 'zsh/zshenv', dest: '.zshenv' }
+    # - { src: 'vim', dest: '.vim' }
+    - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
 # THE BELOW MAY CHANGE BASED, I BELIEVE KICKSTART.NVIM LIKES PACMAN 
 # - name: Install neovim plugin manager from junegunn
