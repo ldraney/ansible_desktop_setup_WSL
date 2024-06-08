@@ -3,7 +3,7 @@
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
-sudo apt-get install -y git ansible tmux zsh wget gh docker
+sudo apt-get install -y git ansible tmux zsh wget gh
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -15,49 +15,31 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-#Set up SSH keys
-mkdir -p $HOME/.ssh
-sudo cp -r /mnt/c/Users/drane/OneDrive/Desktop/VMShare/ssh/* $HOME/.ssh/
-sudo chmod 400 $HOME/.ssh/*
-sudo chown -R ldraney:ldraney $HOME/.ssh
-eval `ssh-agent`
-ssh-add $HOME/.ssh/id_ed*
-
-# personal repos
+# Git clone personal repos
+## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
 mkdir -p $HOME/personal
 cd $HOME/personal
-git clone --recurse-submodules git@github.com:ldraney/dotfilesWSL.git
-git clone git@github.com:ldraney/sensitive.git 
-git clone git@github.com:ldraney/oddball_helps.git oddball_helps
-git clone git@github.com:ldraney/ansible_desktop_setup_WSL.git ansible_desktop_setup_WSL
+repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim")
+for repo in "${repos[@]}"; do
+  git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
+done
+wait
 
-# # iss repos
-# mkdir -p $HOME/iss
-# cd $HOME/iss
-# git clone git@github.com:ldraney/iss-setter-docs.git
-# git clone git@github.com:ldraney/iss-setter-api.git
-# git clone git@github.com:ldraney/iss-setter-app.git
-# git clone git@github.com:dialectic-devops/iss-setter-infra.git
-# git clone git@github.com:ldraney/iss-helps.git
+# iss repos
+mkdir -p $HOME/iss
+cd $HOME/iss
+repos=("iss-setter-afi-frontend" "iss-setter-afi-backend" "iss-setter-afi-backend.wiki")
+for repo in "${repos[@]}"; do
+  git clone https://$GITHUB_TOKEN@github.com/dialectic-devops/$repo.git &
+done
+wait
 
-# #install cheatsheet
+#install cheatsheet
 cd /tmp \
   && wget https://github.com/cheat/cheat/releases/download/4.4.0/cheat-linux-amd64.gz \
   && gunzip cheat-linux-amd64.gz \
   && chmod +x cheat-linux-amd64 \
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
-
-# #Clone oddball repos
-cd $HOME
-mkdir oddball
-cd oddball
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-team.git vanotify-team
-git clone --bare git@github.com:department-of-veterans-affairs/vanotify-infra.git vanotify-infra
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api.git notification-api
-git clone --bare git@github.com:department-of-veterans-affairs/notification-api-qa.git notification-api-qa
-git clone --bare git@github.com:department-of-veterans-affairs/notification-kafka.git notification-kafka
-git clone --bare git@github.com:department-of-veterans-affairs/notification-utils.git notification-utils
-git clone --bare git@github.com:department-of-veterans-affairs/notification-portal.git notification-portal
 
 # Use Ansible for setting up:
 # - symlinks
@@ -66,28 +48,28 @@ cd $HOME/personal/ansible_desktop_setup_WSL/
 ansible-playbook local.yml
 
 # Installation scripts for important tools
-cd $HOME/personal/ansible_desktop_setup_WSL/scripts
-chmod +x ./docker-setup.sh
-chmod +x ./pyenv-setup.sh
-chmod +x ./aws-cli-setup.sh
-chmod +x ./terraform-setup.sh
+# cd $HOME/personal/ansible_desktop_setup_WSL/scripts
+# chmod +x ./docker-setup.sh
+# chmod +x ./pyenv-setup.sh
+# chmod +x ./aws-cli-setup.sh
+# chmod +x ./terraform-setup.sh
 
 # Install Docker
-./docker-setup.sh
+# ./docker-setup.sh
 
 #Install pyenv
-./pyenv-setup.sh 
+# ./pyenv-setup.sh 
 
 # #install aws cli
-./aws-cli-setup.sh
+# ./aws-cli-setup.sh
 
 # install terraform
-./terraform-setup.sh
+# ./terraform-setup.sh
 
 # #install nodejs 
-curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install --lts
+# curl -o- https://ruw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+# source ~/.nvm/nvm.sh
+# nvm install --lts
 
 # install LUA development tools
 # ./scripts/lua-development-setup.sh
