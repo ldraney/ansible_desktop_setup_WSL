@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# export ANSIBLE_BRANCH="master"
-export ANSIBLE_BRANCH="kickstart-nvim"
-
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
@@ -47,11 +44,11 @@ cd /tmp \
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH
+cd $HOME/personal/ansible_desktop_setup_WSL/
 ansible-playbook local.yml
 
 # Installation scripts for important tools
-cd $HOME/personal/ansible_desktop_setup_WSL/$ANSIBLE_BRANCH/scripts
+cd $HOME/personal/ansible_desktop_setup_WSL/scripts
 chmod +x ./docker-setup.sh
 chmod +x ./pyenv-setup.sh
 chmod +x ./aws-cli-setup.sh

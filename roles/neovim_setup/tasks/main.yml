@@ -37,16 +37,9 @@
         name:
           - neovim
 
-    - name: Clone kickstart.nvim configuration
-      ansible.builtin.git:
-        repo: https://github.com/nvim-lua/kickstart.nvim.git
-        dest: "{{ ansible_env.HOME }}/.config/nvim"
-        version: master
-        force: yes
-
     - name: Ensure directory exists for custom Neovim plugins
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.config/nvim/lua/custom/plugins"
+        path: "/home/ldraney/.config/nvim/lua/custom/plugins"
         state: directory
 
     - name: Install YAML support for Neovim (optional, based on user preference)
