@@ -18,13 +18,14 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
+# Git clone personal repos
 ## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
-
-# personal repos
 mkdir -p $HOME/personal
 cd $HOME/personal
-git clone git@github.com:ldraney/dotfilesWSL.git
-git clone git@github.com:ldraney/sensitive.git 
+repos=("sensitive" "dotfilesWSL")
+for repo in "${repos[@]}"; do
+  git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git
+done
 
 # Set up ansible in personal repos directory
 cd $HOME/personal
