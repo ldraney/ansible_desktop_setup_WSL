@@ -30,9 +30,19 @@ mkdir -p $HOME/iss
 cd $HOME/iss
 repos=("iss-setter-afi-frontend" "iss-setter-afi-backend" "iss-setter-afi-backend.wiki")
 for repo in "${repos[@]}"; do
-  git clone https://$GITHUB_TOKEN@github.com/dialectic-devops/$repo.git &
+  git clone https://$GITHUB_TOKEN@github.com/intelligent-staffing-systems/$repo.git &
 done
 wait
+
+# Git clone dia-docs repos
+## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
+# mkdir -p $HOME/dia-docs
+# cd $HOME/dia-docs
+# repos=("James" "Notes" "windows-wsl-linux" "finances" "neovim" "passwords-and-important-notes" "thoughts" "iss")
+# for repo in "${repos[@]}"; do
+#   git clone https://$GITHUB_TOKEN@github.com/dia-docs/$repo.git &
+# done
+# wait
 
 #install cheatsheet
 cd /tmp \
