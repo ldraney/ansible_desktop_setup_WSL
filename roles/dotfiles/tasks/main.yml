@@ -21,6 +21,7 @@
     force: true
   loop:
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
+    - { src: 'tmux/tmux/', dest: '.tmux' }
     - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
     - { src: 'zsh/zshrc', dest: '.zshrc' }
     - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
