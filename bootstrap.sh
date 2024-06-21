@@ -3,7 +3,7 @@
 cd $HOME
 sudo apt-get update -y
 # sudo apt-get upgrade -y
-sudo apt-get install -y git ansible tmux zsh wget gh make unzip gcc
+sudo apt-get install -y git ansible tmux zsh wget gh make unzip gcc tree
 
 #install neovim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -15,10 +15,10 @@ mkdir /home/ldraney/bin
 sudo ln -s /usr/bin/nvim /home/ldraney/bin/nvim
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 
-# Git clone personal repos
+# Git clone ldraney repos
 ## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
-mkdir -p $HOME/personal
-cd $HOME/personal
+mkdir -p $HOME/ldraney
+cd $HOME/ldraney
 repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim")
 for repo in "${repos[@]}"; do
   git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
@@ -54,21 +54,17 @@ cd /tmp \
 # Use Ansible for setting up:
 # - symlinks
 # - directories
-cd $HOME/personal/ansible_desktop_setup_WSL/
+cd $HOME/ldraney/ansible_desktop_setup_WSL/
 ansible-playbook local.yml
 
 # Installation scripts for important tools
-# cd $HOME/personal/ansible_desktop_setup_WSL/scripts
-# chmod +x ./docker-setup.sh
-# chmod +x ./pyenv-setup.sh
-# chmod +x ./aws-cli-setup.sh
-# chmod +x ./terraform-setup.sh
+cd $HOME/ldraney/ansible_desktop_setup_WSL/scripts
 
 # Install Docker
 # ./docker-setup.sh
 
 #Install pyenv
-# ./pyenv-setup.sh 
+./pyenv-setup.sh 
 
 # #install aws cli
 # ./aws-cli-setup.sh
