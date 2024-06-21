@@ -15,3 +15,4 @@ export PATH=$PATH:$HOME/.pyenv/bin/pyenv
 pyenv install 3.11.2
 pyenv global 3.11.2
 
+pip install libtmux
