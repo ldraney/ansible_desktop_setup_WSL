@@ -15,7 +15,7 @@
 
 - name: Symlinks for some dotfiles
   file:
-    src: "/home/ldraney/personal/dotfilesWSL/{{ item.src }}"
+    src: "/home/ldraney/ldraney/dotfilesWSL/{{ item.src }}"
     dest: "/home/ldraney/{{ item.dest }}"
     state: link
     force: true
@@ -32,14 +32,14 @@
 
 - name: Symlinks for neovim
   file:
-    src: "/home/ldraney/personal/kickstart.nvim/"
+    src: "/home/ldraney/ldraney/kickstart.nvim/"
     dest: "/home/ldraney/.config/nvim"
     state: link
     force: true
 
 - name: Symlinks for sensitive files
   file:
-    src: "/home/ldraney/personal/sensitive/{{ item.src }}"
+    src: "/home/ldraney/ldraney/sensitive/{{ item.src }}"
     dest: "/home/ldraney/{{ item.dest }}"
     state: link
     force: true
