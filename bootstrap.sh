@@ -19,9 +19,13 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 ## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
 mkdir -p $HOME/ldraney
 cd $HOME/ldraney
-repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim")
+repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim" "ansible")
 for repo in "${repos[@]}"; do
-  git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
+  if [ "$repo" == "ansible" ]; then # USEFUL AS A TEMPORARY CONDITION FOR DEVELOPMENT
+    git clone -b 10-ansible-pyenv-setup https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
+  else
+    git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
+  fi
 done
 wait
 
