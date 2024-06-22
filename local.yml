@@ -9,5 +9,3 @@
       tags: dotfiles
     - role: pyenv_setup
       tags: pyenv
-  #roles:
-      #- {role: 'dotfiles', tags: 'dotfiles'}
