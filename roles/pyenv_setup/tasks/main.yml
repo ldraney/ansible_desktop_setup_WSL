@@ -2,6 +2,7 @@
 - name: Ensure apt cache is up to date
   apt:
     update_cache: yes
+  become: yes
 
 - name: Install required packages
   apt:
@@ -24,11 +25,13 @@
       - libffi-dev
       - liblzma-dev
     state: present
+  become: yes
 
 - name: Download and install pyenv
   shell: curl https://pyenv.run | bash
   args:
     creates: "{{ ansible_env.HOME }}/.pyenv"
+  become: yes
 
 - name: Set PYENV_ROOT environment variable
   lineinfile:
@@ -60,13 +63,14 @@
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
-    pyenv install 3.11.2
-    pyenv global 3.11.2
+    pyenv install {{ pyenv_version }}
+    pyenv global {{ pyenv_version }}
   environment:
     PYENV_ROOT: "{{ ansible_env.HOME }}/.pyenv"
     PATH: "{{ ansible_env.HOME }}/.pyenv/bin:{{ ansible_env.PATH }}"
   args:
-    creates: "{{ ansible_env.HOME }}/.pyenv/versions/3.11.2"
+    creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ pyenv_version }}"
+  become: yes
 
 - name: Install libtmux
   pip:
