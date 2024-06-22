@@ -1,8 +1,7 @@
 ---
-# - name: Ensure apt cache is up to date
-#   apt:
-#     update_cache: yes
-#   become: yes
+- name: Ensure apt cache is up to date
+  apt:
+    update_cache: yes
 
 - name: Install required packages
   apt:
@@ -25,7 +24,6 @@
       - libffi-dev
       - liblzma-dev
     state: present
-  become: yes
 
 - name: Download and install pyenv
   shell: curl https://pyenv.run | bash
