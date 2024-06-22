@@ -64,7 +64,7 @@ cd $HOME/ldraney/ansible_desktop_setup_WSL/scripts
 # ./docker-setup.sh
 
 #Install pyenv
-./pyenv-setup.sh 
+# ./pyenv-setup.sh 
 
 # #install aws cli
 # ./aws-cli-setup.sh
