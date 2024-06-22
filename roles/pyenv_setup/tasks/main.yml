@@ -1,0 +1,77 @@
+---
+# - name: Ensure apt cache is up to date
+#   apt:
+#     update_cache: yes
+#   become: yes
+
+- name: Install required packages
+  apt:
+    name:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+    state: present
+  become: yes
+
+- name: Download and install pyenv
+  shell: curl https://pyenv.run | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.pyenv"
+
+- name: Set PYENV_ROOT environment variable
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'export PYENV_ROOT="$HOME/.pyenv"'
+    state: present
+
+- name: Add pyenv to PATH
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
+    state: present
+
+- name: Add pyenv init to bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'eval "$(pyenv init --path)"'
+    state: present
+
+- name: Add pyenv virtualenv-init to bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'eval "$(pyenv virtualenv-init -)"'
+    state: present
+
+- name: Install pyenv dependencies
+  shell: |
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv install 3.11.2
+    pyenv global 3.11.2
+  environment:
+    PYENV_ROOT: "{{ ansible_env.HOME }}/.pyenv"
+    PATH: "{{ ansible_env.HOME }}/.pyenv/bin:{{ ansible_env.PATH }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.pyenv/versions/3.11.2"
+
+- name: Install libtmux
+  pip:
+    name: libtmux
+    executable: "{{ ansible_env.HOME }}/.pyenv/shims/pip"
+
