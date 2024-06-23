@@ -24,36 +24,51 @@
       - liblzma-dev
 
 - name: Download and install pyenv
+  become: yes
+  become_user: ldraney
   shell: curl https://pyenv.run | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.pyenv"
-  become: yes
+    creates: /home/ldraney/.pyenv
+  environment:
+    HOME: /home/ldraney
+    USER: ldraney
+    PATH: /home/ldraney/.pyenv/bin:/home/ldraney/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
 - name: Set PYENV_ROOT environment variable
+  become: yes
+  become_user: ldraney
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: /home/ldraney/.bashrc
     line: 'export PYENV_ROOT="$HOME/.pyenv"'
     state: present
 
 - name: Add pyenv to PATH
+  become: yes
+  become_user: ldraney
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: /home/ldraney/.bashrc
     line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
     state: present
 
 - name: Add pyenv init to bashrc
+  become: yes
+  become_user: ldraney
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: /home/ldraney/.bashrc
     line: 'eval "$(pyenv init --path)"'
     state: present
 
 - name: Add pyenv virtualenv-init to bashrc
+  become: yes
+  become_user: ldraney
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: /home/ldraney/.bashrc
     line: 'eval "$(pyenv virtualenv-init -)"'
     state: present
 
-- name: Install pyenv dependencies
+- name: Install pyenv dependencies and set global version
+  become: yes
+  become_user: ldraney
   shell: |
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
@@ -62,14 +77,20 @@
     pyenv install {{ pyenv_version }}
     pyenv global {{ pyenv_version }}
   environment:
-    PYENV_ROOT: "{{ ansible_env.HOME }}/.pyenv"
-    PATH: "{{ ansible_env.HOME }}/.pyenv/bin:{{ ansible_env.PATH }}"
+    HOME: /home/ldraney
+    USER: ldraney
+    PATH: /home/ldraney/.pyenv/bin:/home/ldraney/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
   args:
-    creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ pyenv_version }}"
-  become: yes
+    creates: /home/ldraney/.pyenv/versions/{{ pyenv_version }}
 
 - name: Install libtmux
+  become: yes
+  become_user: ldraney
   pip:
     name: libtmux
-    executable: "{{ ansible_env.HOME }}/.pyenv/shims/pip"
+    executable: /home/ldraney/.pyenv/shims/pip
+  environment:
+    HOME: /home/ldraney
+    USER: ldraney
+    PATH: /home/ldraney/.pyenv/shims:/home/ldraney/.pyenv/bin:/home/ldraney/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
