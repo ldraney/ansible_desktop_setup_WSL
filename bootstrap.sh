@@ -59,7 +59,7 @@ cd /tmp \
 # - symlinks
 # - directories
 cd $HOME/ldraney/ansible_desktop_setup_WSL/
-ansible-playbook local.yml
+sudo ansible-playbook local.yml
 
 # Installation scripts for important tools
 # cd $HOME/ldraney/ansible_desktop_setup_WSL/scripts
