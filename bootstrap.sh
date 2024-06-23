@@ -19,13 +19,9 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 ## assumes you have manually added to the bashrc GITHUB_TOKEN from the sensitive repo
 mkdir -p $HOME/ldraney
 cd $HOME/ldraney
-repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim" "ansible" "dia-docs")
+repos=("sensitive" "dotfilesWSL" "ansible_desktop_setup_WSL" "kickstart.nvim")
 for repo in "${repos[@]}"; do
-  if [ "$repo" == "ansible" ]; then # USEFUL AS A TEMPORARY CONDITION FOR DEVELOPMENT
-    git clone -b 10-ansible-pyenv-setup https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
-  else
-    git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
-  fi
+  git clone https://$GITHUB_TOKEN@github.com/ldraney/$repo.git &
 done
 wait
 
@@ -59,16 +55,16 @@ cd /tmp \
 # - symlinks
 # - directories
 cd $HOME/ldraney/ansible_desktop_setup_WSL/
-sudo ansible-playbook local.yml
+ansible-playbook local.yml
 
 # Installation scripts for important tools
-# cd $HOME/ldraney/ansible_desktop_setup_WSL/scripts
+cd $HOME/ldraney/ansible_desktop_setup_WSL/scripts
 
 # Install Docker
 # ./docker-setup.sh
 
 #Install pyenv
-# ./pyenv-setup.sh 
+./pyenv-setup.sh 
 
 # #install aws cli
 # ./aws-cli-setup.sh
