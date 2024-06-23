@@ -1,5 +1,7 @@
 ---
 - name: Create necessary directories
+  become: yes
+  become_user: ldraney
   file:
     path: "{{ item }}"
     state: directory
@@ -9,11 +11,15 @@
     - /home/ldraney/.config
 
 - name: Remove paths that block symlinks
+  become: yes
+  become_user: ldraney
   file:
     state: absent
     path: /home/ldraney/.config/cheat
 
 - name: Symlinks for some dotfiles
+  become: yes
+  become_user: ldraney
   file:
     src: "/home/ldraney/ldraney/dotfilesWSL/{{ item.src }}"
     dest: "/home/ldraney/{{ item.dest }}"
@@ -31,6 +37,8 @@
     - { src: 'cheat', dest: '.config/cheat' }
 
 - name: Symlinks for neovim
+  become: yes
+  become_user: ldraney
   file:
     src: "/home/ldraney/ldraney/kickstart.nvim/"
     dest: "/home/ldraney/.config/nvim"
@@ -38,6 +46,8 @@
     force: true
 
 - name: Symlinks for sensitive files
+  become: yes
+  become_user: ldraney
   file:
     src: "/home/ldraney/ldraney/sensitive/{{ item.src }}"
     dest: "/home/ldraney/{{ item.dest }}"
