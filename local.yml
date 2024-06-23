@@ -3,9 +3,9 @@
 - hosts: localhost
   connection: local
   become: true
-  # become_user: ldraney
+  become_user: ldraney
   roles:
     - role: dotfiles
       tags: dotfiles
-    - role: pyenv_setup
-      tags: pyenv
+  #roles:
+      #- {role: 'dotfiles', tags: 'dotfiles'}
