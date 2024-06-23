@@ -22,7 +22,7 @@
   loop:
     - { src: 'tmux/tmux.conf', dest: '.tmux.conf' }
     - { src: 'tmux/tmux/', dest: '.tmux' }
-    - { src: 'zsh/', dest: '.zsh' } # Updated to reflect new .zsh directory
+    - { src: 'zsh/', dest: '.zsh' }
     - { src: 'zsh/zshrc', dest: '.zshrc' }
     - { src: 'zsh/oh-my-zsh', dest: '.oh-my-zsh' }
     - { src: 'environment/warprc', dest: '.warprc' }
@@ -44,18 +44,6 @@
     state: link
     force: true
   loop:
-    # - { src: 'zsh/zsh_history', dest: '.zsh_history' }
     - { src: 'zsh/zshenv', dest: '.zshenv' }
-    # - { src: 'vim', dest: '.vim' }
     - { src: 'ansible/ansible.cfg', dest: '.ansible.cfg' }
 
-# THE BELOW MAY CHANGE BASED, I BELIEVE KICKSTART.NVIM LIKES PACMAN 
-# - name: Install neovim plugin manager from junegunn
-#   get_url:
-#      url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#      dest: /home/ldraney/.local/share/nvim/site/autoload/plug.vim
-#   ignore_errors: yes
-
-# - name: Install plugins with neovim
-#   shell: 'vim --headless +PlugInstall +qall'
-#   ignore_errors: yes
